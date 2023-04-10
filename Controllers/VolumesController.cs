@@ -8,20 +8,35 @@ namespace MediaManager.API.Controllers
     [Route("api/volumes")]
     public class VolumesController : ControllerBase
     {
-        public ActionResult<IEnumerable<VolumeDto>> GetVolumes()
+        public ActionResult<IEnumerable<VolumeDto>> GetVolumes(bool includeM3us = false)
         {
-            return Ok(VolumesDataStore.Current.Volumes);
+            try
+            {
+                var results = VolumesDataStore.Current.Volumes;
+                return Ok(results);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<VolumeDto> GetVolume(int id)
+        [HttpGet("{moniker}")]
+        public ActionResult<VolumeDto> GetVolume(string moniker)
         {
-            var result = VolumesDataStore.Current.Volumes.FirstOrDefault(v => v.Id == id);
-            if (result is null)
+            try
             {
-                return NotFound();
+                var result = VolumesDataStore.Current.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
+                if (result is null)
+                {
+                    return NotFound();
+                }
+                return Ok(result);
             }
-            return Ok(result);
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
         }
     }
 }

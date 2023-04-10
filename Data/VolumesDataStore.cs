@@ -31,6 +31,13 @@ namespace MediaManager.API.Data
                             Name="ShaNaNa.m3u",
                             Created=DateTime.Now,
                             FilesInM3U = songList
+                        },
+                        new M3uFileDto()
+                        {
+                            Id=4,
+                            Name="WakeAndBake.m3u",
+                            Created=DateTime.Now,
+                            FilesInM3U = songList
                         }
                     }
                 },
@@ -48,6 +55,13 @@ namespace MediaManager.API.Data
                             Name="KillerBs.m3u",
                             Created=DateTime.Now,
                             FilesInM3U = songList
+                        },
+                        new M3uFileDto()
+                        {
+                            Id=5,
+                            Name="Moonlight.m3u",
+                            Created=DateTime.Now,
+                            FilesInM3U = songList
                         }
                     }
                 },
@@ -63,6 +77,13 @@ namespace MediaManager.API.Data
                         {
                             Id=3,
                             Name="DontFallAsleep.m3u",
+                            Created=DateTime.Now,
+                            FilesInM3U = songList
+                        },
+                        new M3uFileDto()
+                        {
+                            Id=6,
+                            Name="FeelinGood.m3u",
                             Created=DateTime.Now,
                             FilesInM3U = songList
                         }
