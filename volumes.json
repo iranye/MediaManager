@@ -1,0 +1,1131 @@
+[
+  {
+    "Id": 2,
+    "Title": "Soul",
+    "M3uFiles": null,
+    "Created": "0001-01-01T00:00:00",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 28,
+    "Title": "AltHeavyVol1_EXP",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Audioslave\\_Audioslave-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 122,
+        "PartialPath": "Music\\MP3s\\Beck\\_Beck-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Godsmack\\_Godsmack-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Nine Inch Nails\\_Nine Inch Nails-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Soundtrack_Spawn\\_SpawnSountrack-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Awolnation\\$Awolnation.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Crystal Method\\$Crystal Method.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Butthole Surfers\\ButtholeSurfers-PopShortlist.m3u"
+      }
+    ],
+    "Created": "2023-03-01T17:01:38",
+    "LastModified": "2023-03-01T17:49:22",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 29,
+    "Title": "AltHeavyVol2_EXP",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 130,
+        "PartialPath": "Music\\MP3s\\Beastie Boys\\_BeastieBoys-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 18,
+        "PartialPath": "Music\\MP3s\\Black Crowes\\_BlackCrowesShakeMM.m3u"
+      },
+      {
+        "TotalMegaBytes": 72,
+        "PartialPath": "Music\\MP3s\\Counting Crows\\_CountingCrows.m3u"
+      },
+      {
+        "TotalMegaBytes": 145,
+        "PartialPath": "Music\\MP3s\\Gorillaz\\_Gorillaz-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 188,
+        "PartialPath": "Music\\MP3s\\Pantera\\_Pantera-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 78,
+        "PartialPath": "Music\\MP3s\\Stone Roses\\_StoneRoses-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-01T17:49:34",
+    "LastModified": "2023-03-18T17:23:22",
+    "CopyDirectories": false,
+    "M3usTotalMb": 631
+  },
+  {
+    "Id": 30,
+    "Title": "AltNew-02",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 75,
+        "PartialPath": "Music\\MP3s\\David Gray\\_DavidGray-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 60,
+        "PartialPath": "Music\\MP3s\\Elvis Costello & the Attractions\\_ElvisCostello-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 160,
+        "PartialPath": "Music\\MP3s\\Kings of Leon\\_KingsOfLeon-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 77,
+        "PartialPath": "Music\\MP3s\\Black Keys\\$Black Keys-Brothers.m3u"
+      },
+      {
+        "TotalMegaBytes": 131,
+        "PartialPath": "Music\\MP3s\\AimeeMann\\AimeeMann_ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-01T17:54:47",
+    "LastModified": "2023-03-18T17:23:57",
+    "CopyDirectories": false,
+    "M3usTotalMb": 503
+  },
+  {
+    "Id": 31,
+    "Title": "AltNew-01",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 200,
+        "PartialPath": "Music\\MP3s\\Death Cab For Cutie\\_DeathCabForCutie-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 111,
+        "PartialPath": "Music\\MP3s\\Foster the People\\_FosterThePeople.m3u"
+      },
+      {
+        "TotalMegaBytes": 30,
+        "PartialPath": "Music\\MP3s\\The Sounds\\_TheSounds-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 92,
+        "PartialPath": "Music\\MP3s\\VampireWeekend\\_VampireWeekend-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 252,
+        "PartialPath": "Music\\MP3s\\WhiteStripes\\_WhiteStripes-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 60,
+        "PartialPath": "Music\\MP3s\\Capital Cities\\$Capital Cities.m3u"
+      }
+    ],
+    "Created": "2023-03-01T17:54:56",
+    "LastModified": "2023-03-18T17:18:52",
+    "CopyDirectories": false,
+    "M3usTotalMb": 745
+  },
+  {
+    "Id": 32,
+    "Title": "AltOldies-01",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:55:28",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 33,
+    "Title": "AltOldies-02",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:55:48",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 34,
+    "Title": "AltOldies-03_EXP",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:56:35",
+    "LastModified": "2023-03-05T08:58:51",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 35,
+    "Title": "AltOldies-04",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 124,
+        "PartialPath": "Music\\MP3s\\Jane's Addiction\\_JanesAddiction_ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 57,
+        "PartialPath": "Music\\MP3s\\Live\\_Live-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 49,
+        "PartialPath": "Music\\MP3s\\Porno for Pyros\\_PornoForPyros_ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 569,
+        "PartialPath": "Music\\MP3s\\Pearl Jam\\Pearl Jam-Shortlist.m3u"
+      }
+    ],
+    "Created": "2023-03-01T17:56:54",
+    "LastModified": "2023-03-25T11:33:31",
+    "CopyDirectories": false,
+    "M3usTotalMb": 799
+  },
+  {
+    "Id": 37,
+    "Title": "Childrens",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:57:15",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 38,
+    "Title": "ClassicRock-01",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:57:39",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 39,
+    "Title": "ClassicRock-05",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:57:59",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 40,
+    "Title": "ClassicRock-02",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:58:12",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 41,
+    "Title": "ClassicRock-03",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:58:24",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 42,
+    "Title": "ClassicRock-04",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\LedZeppelin\\_LedZeppelin-Shortlist.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Robert Plant\\_RobertPlant_ShorList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Honeydrippers\\Honeydrippers-Shortlist.m3u"
+      }
+    ],
+    "Created": "2023-03-01T17:58:34",
+    "LastModified": "2023-03-05T15:31:24",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 43,
+    "Title": "ClassicRock-06",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:58:43",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 44,
+    "Title": "ClassicRock-07",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:58:48",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 45,
+    "Title": "ClassicRock-08",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:58:58",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 46,
+    "Title": "ClassicRock-09",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:59:07",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 47,
+    "Title": "ClassicRock-10",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:59:12",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 49,
+    "Title": "Grunge-01",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\NoAlternative\\_NoAlternative-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 74,
+        "PartialPath": "Music\\MP3s\\Radiohead\\_RadioHead-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Soundtrack_SFW\\_Soundtrack_SFW-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 106,
+        "PartialPath": "Music\\MP3s\\Butthole Surfers\\ButtholeSurfers-Shortlist.m3u"
+      },
+      {
+        "TotalMegaBytes": 61,
+        "PartialPath": "Music\\MP3s\\Fugazi\\Fugazi-Shortlist-USEm3u8.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Mudhoney\\Mudhoney-Shortlist.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Napalm Beach\\Napalm Beach-Shortlist.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Primus\\Primus-Shortlist.m3u"
+      }
+    ],
+    "Created": "2023-03-01T17:59:35",
+    "LastModified": "2023-03-05T09:00:45",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 50,
+    "Title": "Grunge-02",
+    "M3uFiles": [],
+    "Created": "2023-03-01T17:59:44",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 51,
+    "Title": "HeavyRock-01",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Black Sabbath\\_BlackSabbath-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Dio\\_Dio-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Hard_N_Heavy\\_HardAndHeavy-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 275,
+        "PartialPath": "Music\\MP3s\\OzzyOsbourne\\_OzzyOsbourne-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Rob Zombie\\_RobZombie-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-01T17:59:56",
+    "LastModified": "2023-03-03T17:19:14",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 52,
+    "Title": "HipHopRap-01_EXP",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 76,
+        "PartialPath": "Music\\MP3s\\UltraHits\\_UltraHits-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 163,
+        "PartialPath": "Music\\MP3s\\NotoriousBIG\\NotoriousBIG-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 80,
+        "PartialPath": "Music\\SimpleDriveMusic\\Usher\\Usher-Shortlist.m3u"
+      }
+    ],
+    "Created": "2023-03-01T18:00:10",
+    "LastModified": "2023-03-17T16:58:20",
+    "CopyDirectories": false,
+    "M3usTotalMb": 319
+  },
+  {
+    "Id": 53,
+    "Title": "KGON-01",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 51,
+        "PartialPath": "Music\\MP3s\\Cream\\_Cream-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 304,
+        "PartialPath": "Music\\MP3s\\Emerson, Lake & Palmer\\_EmersonLakePalmer-Sortlist.m3u"
+      },
+      {
+        "TotalMegaBytes": 128,
+        "PartialPath": "Music\\MP3s\\Steely Dan\\_SteelyDan-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 105,
+        "PartialPath": "Music\\MP3s\\Eric Clapton\\Eric Clapton-Shortlist.m3u"
+      },
+      {
+        "TotalMegaBytes": 106,
+        "PartialPath": "Music\\SimpleDriveMusic\\Van Morrison\\Van Morrison-Shortlist.m3u"
+      }
+    ],
+    "Created": "2023-03-01T18:00:49",
+    "LastModified": "2023-03-18T16:38:38",
+    "CopyDirectories": false,
+    "M3usTotalMb": 694
+  },
+  {
+    "Id": 54,
+    "Title": "KGON-02",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 8,
+        "PartialPath": "Music\\MP3s\\AprilWine\\_AprilWine-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 104,
+        "PartialPath": "Music\\MP3s\\David Bowie\\_DavidBowie-Changes.m3u"
+      },
+      {
+        "TotalMegaBytes": 198,
+        "PartialPath": "Music\\MP3s\\_Cloud\\21-ClassicRockFavorites\\21-ClassicRockFavs_ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 276,
+        "PartialPath": "Music\\MP3s\\AC-DC\\AC-DC-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 95,
+        "PartialPath": "Music\\MP3s\\Police\\Police-Shortlist.m3u"
+      }
+    ],
+    "Created": "2023-03-01T18:00:55",
+    "LastModified": "2023-03-18T16:40:43",
+    "CopyDirectories": false,
+    "M3usTotalMb": 681
+  },
+  {
+    "Id": 55,
+    "Title": "KGON-03",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 119,
+        "PartialPath": "Music\\MP3s\\Cars\\_Cars-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 92,
+        "PartialPath": "Music\\MP3s\\Journey\\_Journey-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 131,
+        "PartialPath": "Music\\MP3s\\Kiss\\_Kiss-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 210,
+        "PartialPath": "Music\\MP3s\\VanHalen\\_VanHalen-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 83,
+        "PartialPath": "Music\\MP3s\\Eddie Money - The Essential Eddie Money\\Eddie Money - The Essential Eddie Money-Shortlist.m3u"
+      },
+      {
+        "TotalMegaBytes": 103,
+        "PartialPath": "Music\\MP3s\\JoeWalshJamesGang\\JoeWalshJamesGang-Shortlist.m3u"
+      }
+    ],
+    "Created": "2023-03-01T18:01:02",
+    "LastModified": "2023-03-18T17:20:39",
+    "CopyDirectories": false,
+    "M3usTotalMb": 738
+  },
+  {
+    "Id": 56,
+    "Title": "Mellow-01",
+    "M3uFiles": [],
+    "Created": "2023-03-01T18:01:13",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 57,
+    "Title": "Metal-02",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 65,
+        "PartialPath": "Music\\MP3s\\Iron Maiden\\_IronMaiden-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 109,
+        "PartialPath": "Music\\MP3s\\Scorpions\\_Scorpions-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 54,
+        "PartialPath": "Music\\MP3s\\Helmet\\$Helmet.m3u"
+      },
+      {
+        "TotalMegaBytes": 319,
+        "PartialPath": "Music\\MP3s\\Judas Priest\\Judas Priest-Shortlist.m3u"
+      }
+    ],
+    "Created": "2023-03-01T18:01:27",
+    "LastModified": "2023-03-20T19:14:15",
+    "CopyDirectories": false,
+    "M3usTotalMb": 547
+  },
+  {
+    "Id": 59,
+    "Title": "Metal-03_EXP",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 58,
+        "PartialPath": "Music\\MP3s\\Korn\\_Korn-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 34,
+        "PartialPath": "Music\\MP3s\\Ministry\\_Ministry-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 63,
+        "PartialPath": "Music\\MP3s\\Monster Magnet\\_MonsterMagnet-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 15,
+        "PartialPath": "Music\\MP3s\\PerfectCircle\\_PerfectCircle-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 68,
+        "PartialPath": "Music\\MP3s\\Rage Against the Machine\\_RageAgainstTheMachine-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 37,
+        "PartialPath": "Music\\MP3s\\Slipknot\\_Slipknot-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 311,
+        "PartialPath": "Music\\MP3s\\Tool\\$Tool-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-01T18:01:58",
+    "LastModified": "2023-03-20T19:15:37",
+    "CopyDirectories": false,
+    "M3usTotalMb": 586
+  },
+  {
+    "Id": 60,
+    "Title": "Metal-04",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 142,
+        "PartialPath": "Music\\MP3s\\Megadeth\\_Megadeth-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 417,
+        "PartialPath": "Music\\MP3s\\Metallica\\_Metallica-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-01T18:02:09",
+    "LastModified": "2023-03-20T19:35:38",
+    "CopyDirectories": false,
+    "M3usTotalMb": 559
+  },
+  {
+    "Id": 61,
+    "Title": "Relaxing-01",
+    "M3uFiles": [],
+    "Created": "2023-03-01T18:02:19",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 62,
+    "Title": "Rock-01_EXP",
+    "M3uFiles": [],
+    "Created": "2023-03-01T18:02:28",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 63,
+    "Title": "RockMix-01",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\MP3s\\Soundtrack_Coneheads\\_ConeheadsSoundtrack-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 69,
+        "PartialPath": "Music\\MP3s\\Weird Al- Yankovic\\_WeirdAl-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-01T18:02:45",
+    "LastModified": "2023-03-18T16:41:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 64,
+    "Title": "RockProgressive",
+    "M3uFiles": [],
+    "Created": "2023-03-01T18:02:57",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 65,
+    "Title": "Sinatra",
+    "M3uFiles": [],
+    "Created": "2023-03-01T18:03:08",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 66,
+    "Title": "Soft",
+    "M3uFiles": [],
+    "Created": "2023-03-01T18:03:13",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 67,
+    "Title": "Soundtracks-01",
+    "M3uFiles": [],
+    "Created": "2023-03-01T18:03:18",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 68,
+    "Title": "Xmas-01",
+    "M3uFiles": [],
+    "Created": "2023-03-01T18:03:31",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 69,
+    "Title": "50s-01",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1950\\_1950-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1951\\_1951-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1952\\_1952-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1953\\_1953-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1954\\_1954-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1955\\_1955-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1956\\_1956-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1957\\_1957-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1958\\_1958-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-02T14:51:26",
+    "LastModified": "2023-03-02T14:52:55",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 70,
+    "Title": "70s-01",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1970\\_1970-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 22,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1971\\_1971-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-11T17:13:00",
+    "LastModified": "2023-03-11T17:23:09",
+    "CopyDirectories": false,
+    "M3usTotalMb": 0
+  },
+  {
+    "Id": 71,
+    "Title": "70s-02",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 270,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1972\\_1972-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 387,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1976\\_1976-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-11T17:25:43",
+    "LastModified": "2023-03-18T16:54:40",
+    "CopyDirectories": false,
+    "M3usTotalMb": 657
+  },
+  {
+    "Id": 73,
+    "Title": "70s-05",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 309,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1975\\_1975-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 330,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1977\\_1977-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-11T17:26:00",
+    "LastModified": "2023-03-18T17:03:18",
+    "CopyDirectories": false,
+    "M3usTotalMb": 639
+  },
+  {
+    "Id": 75,
+    "Title": "60s-01",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 267,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1960\\_1960-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 292,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1961\\_1961-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-17T16:33:08",
+    "LastModified": "2023-03-18T16:59:10",
+    "CopyDirectories": false,
+    "M3usTotalMb": 559
+  },
+  {
+    "Id": 76,
+    "Title": "Dance-01",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 48,
+        "PartialPath": "Music\\MP3s\\Bepka\\_Bepka-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 118,
+        "PartialPath": "Music\\MP3s\\Lady Gaga\\_LadyGaga.m3u"
+      },
+      {
+        "TotalMegaBytes": 77,
+        "PartialPath": "Music\\MP3s\\Madonna\\_Madonna-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 42,
+        "PartialPath": "Music\\MP3s\\Mariah Carey\\_MariaCarey-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 54,
+        "PartialPath": "Music\\MP3s\\MichaelJackson\\_MichaelJackson-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 251,
+        "PartialPath": "Music\\MP3s\\Rammstein\\_Rammstein-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 34,
+        "PartialPath": "Music\\MP3s\\Soundtrack_Trolls\\_Soundtrack_Trolls_ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 56,
+        "PartialPath": "Music\\MP3s\\Tina Turner\\_TinaTurner_ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-18T16:41:55",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 680
+  },
+  {
+    "Id": 77,
+    "Title": "60s-02",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 87,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1962\\_1962-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 217,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1963\\_1963-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 218,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1964\\_1964-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 235,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1969\\_1969-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-18T16:51:45",
+    "LastModified": "2023-03-18T16:59:15",
+    "CopyDirectories": false,
+    "M3usTotalMb": 757
+  },
+  {
+    "Id": 78,
+    "Title": "60s-03",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 261,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1965\\_1965-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 293,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1966\\_1966-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-18T16:52:38",
+    "LastModified": "2023-03-18T16:59:21",
+    "CopyDirectories": false,
+    "M3usTotalMb": 44
+  },
+  {
+    "Id": 79,
+    "Title": "60s-04",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 274,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1967\\_1967-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 263,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1968\\_1968-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-18T16:53:27",
+    "LastModified": "2023-03-18T16:59:25",
+    "CopyDirectories": false,
+    "M3usTotalMb": 537
+  },
+  {
+    "Id": 80,
+    "Title": "70s-03",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 321,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1973\\_1973-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 293,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1974\\_1974-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-18T16:54:53",
+    "LastModified": "2023-03-18T16:59:29",
+    "CopyDirectories": false,
+    "M3usTotalMb": 614
+  },
+  {
+    "Id": 81,
+    "Title": "70s-04",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 418,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1978\\_1978-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 444,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1979\\_1979-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-18T16:55:33",
+    "LastModified": "2023-03-18T17:00:18",
+    "CopyDirectories": false,
+    "M3usTotalMb": 862
+  },
+  {
+    "Id": 82,
+    "Title": "KGON-04",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 57,
+        "PartialPath": "Music\\MP3s\\DeepPurple\\_DeepPurple-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 118,
+        "PartialPath": "Music\\MP3s\\Def Leppard\\_DefLeppard-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 63,
+        "PartialPath": "Music\\MP3s\\Doobie Brothers\\_DoobieBrothers-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 213,
+        "PartialPath": "Music\\MP3s\\Eagles\\_Eagles-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 125,
+        "PartialPath": "Music\\MP3s\\Genesis\\_Genesis-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 47,
+        "PartialPath": "Music\\MP3s\\Grateful Dead\\_GratefulDead-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 56,
+        "PartialPath": "Music\\MP3s\\Jefferson Starship\\_JeffersonStarship-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 75,
+        "PartialPath": "Music\\MP3s\\NeilYoung\\_NeilYoung-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-18T16:56:50",
+    "LastModified": "2023-03-18T17:19:22",
+    "CopyDirectories": false,
+    "M3usTotalMb": 754
+  },
+  {
+    "Id": 83,
+    "Title": "80s-01",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 348,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1980\\_1980-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 351,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1981\\_1981-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-18T17:09:28",
+    "LastModified": "2023-03-18T17:10:37",
+    "CopyDirectories": false,
+    "M3usTotalMb": 699
+  },
+  {
+    "Id": 84,
+    "Title": "80s-02",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 365,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1982\\_1982-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 403,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1983\\_1983-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-18T17:12:17",
+    "LastModified": "2023-03-18T17:14:01",
+    "CopyDirectories": false,
+    "M3usTotalMb": 775
+  },
+  {
+    "Id": 85,
+    "Title": "80s-03",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 438,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1984\\_1984-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 436,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Billboard Hits 1946-2004\\1985\\_1985-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-18T17:14:06",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 874
+  },
+  {
+    "Id": 86,
+    "Title": "KGON-05",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 38,
+        "PartialPath": "Music\\MP3s\\Dire Straits\\_DireStraits-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 183,
+        "PartialPath": "Music\\MP3s\\Elton John\\_EltonJohn-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 92,
+        "PartialPath": "Music\\MP3s\\Fleetwood Mac\\_FleetwoodMac-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-18T17:21:09",
+    "LastModified": "2023-03-18T17:22:05",
+    "CopyDirectories": false,
+    "M3usTotalMb": 313
+  },
+  {
+    "Id": 87,
+    "Title": "JazzBlues",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 230,
+        "PartialPath": "Music\\MP3s\\Blues\\_Blues-Shortlist.m3u"
+      },
+      {
+        "TotalMegaBytes": 88,
+        "PartialPath": "Music\\MP3s\\John Coltrane\\_JohnColtrane.m3u"
+      },
+      {
+        "TotalMegaBytes": 64,
+        "PartialPath": "Music\\MP3s\\Miles Davis\\_MilesDavis.m3u"
+      },
+      {
+        "TotalMegaBytes": 89,
+        "PartialPath": "Music\\MP3s\\Wynton Marsalis & Ellis Marsalis\\_WyntonMars-ShortList.m3u"
+      }
+    ],
+    "Created": "2023-03-20T19:09:06",
+    "LastModified": "0001-01-01T00:00:00",
+    "CopyDirectories": false,
+    "M3usTotalMb": 471
+  },
+  {
+    "Id": 88,
+    "Title": "AltOldies-05",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 69,
+        "PartialPath": "Music\\MP3s\\B-52s\\_B52s.m3u"
+      },
+      {
+        "TotalMegaBytes": 63,
+        "PartialPath": "Music\\MP3s\\Culture Club\\_CultureClub.m3u"
+      },
+      {
+        "TotalMegaBytes": 104,
+        "PartialPath": "Music\\MP3s\\Cure\\_Cure-ShortList.m3u"
+      },
+      {
+        "TotalMegaBytes": 59,
+        "PartialPath": "Music\\MP3s\\Devo\\_Devo.m3u"
+      },
+      {
+        "TotalMegaBytes": 535,
+        "PartialPath": "Music\\SimpleDriveMusic\\Depeche Mode\\DepecheMode-Shortlist.m3u"
+      }
+    ],
+    "Created": "2023-03-25T10:32:06",
+    "LastModified": "2023-03-25T10:42:25",
+    "CopyDirectories": false,
+    "M3usTotalMb": 830
+  },
+  {
+    "Id": 89,
+    "Title": "80s-04",
+    "M3uFiles": [
+      {
+        "TotalMegaBytes": 990,
+        "PartialPath": "Music\\SimpleDriveMusic\\0_Compilations\\Like Omigod - The '80s Pop Culture Box\\Like Omigod - The '80s Pop Culture Box-Shortlist.m3u"
+      }
+    ],
+    "Created": "2023-03-25T11:22:45",
+    "LastModified": "2023-03-25T11:23:43",
+    "CopyDirectories": false,
+    "M3usTotalMb": 990
+  }
+]
