@@ -7,6 +7,11 @@ using Microsoft.AspNetCore.StaticFiles;
 [ApiController]
 public class FilesController : ControllerBase
 {
+    // --------------------------------------------------------------------------------------------------------------------
+    // <copyright file="FilesController.cs" company="IRANYE">
+    //   Copyright (c) IRANYE. All rights reserved.
+    // </copyright>
+    // --------------------------------------------------------------------------------------------------------------------
     private readonly FileExtensionContentTypeProvider _fileExtensionContentTypeProvider;
 
     public FilesController(FileExtensionContentTypeProvider fileExtensionContentTypeProvider)

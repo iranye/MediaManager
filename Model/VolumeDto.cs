@@ -1,5 +1,10 @@
 ﻿namespace MediaManager.API.Model
 {
+    // --------------------------------------------------------------------------------------------------------------------
+    // <copyright file="VolumeDto.cs" company="IRANYE">
+    //   Copyright (c) IRANYE. All rights reserved.
+    // </copyright>
+    // --------------------------------------------------------------------------------------------------------------------
     using System;
 
     public class VolumeDto

@@ -1,3 +1,7 @@
 
 async Controller Actions
 
+Logging (i.e., ex.Message) to file + LogController
+
+Implement Repository then query string logic: ?includeM3us=true
+

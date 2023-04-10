@@ -1,7 +1,7 @@
 ﻿namespace MediaManager.API.Model
 {
     // --------------------------------------------------------------------------------------------------------------------
-    // <copyright file="FileEntry.cs" company="IRANYE">
+    // <copyright file="FileEntryDto.cs" company="IRANYE">
     //   Copyright (c) IRANYE. All rights reserved.
     // </copyright>
     // --------------------------------------------------------------------------------------------------------------------

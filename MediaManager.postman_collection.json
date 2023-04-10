@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "7ca18c07-0ca7-417d-b1ed-c4b78ad2d49f",
+		"name": "MediaManager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3936547"
+	},
+	"item": [
+		{
+			"name": "GET File",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/files/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"files",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetVolumes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/volumes?includeM3us=true",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"volumes"
+					],
+					"query": [
+						{
+							"key": "includeM3us",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetVolumeById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/volumes/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"volumes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetVolumeByName (XML)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/volumes/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"volumes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetVolumeByName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/volumes/kgon-01",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"volumes",
+						"kgon-01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetM3usByVolume",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/volumes/kgon-01/m3us",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"volumes",
+						"kgon-01",
+						"m3us"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetM3uByVolumeThenByM3uId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/volumes/kgon-01/m3us/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"volumes",
+						"kgon-01",
+						"m3us",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "portNumber",
+			"value": "7072"
+		}
+	]
+}

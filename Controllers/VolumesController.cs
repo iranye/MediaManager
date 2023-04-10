@@ -4,6 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MediaManager.API.Controllers
 {
+    // --------------------------------------------------------------------------------------------------------------------
+    // <copyright file="VolumesController.cs" company="IRANYE">
+    //   Copyright (c) IRANYE. All rights reserved.
+    // </copyright>
+    // --------------------------------------------------------------------------------------------------------------------
     [ApiController]
     [Route("api/volumes")]
     public class VolumesController : ControllerBase
