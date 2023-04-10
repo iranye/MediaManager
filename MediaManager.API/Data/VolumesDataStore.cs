@@ -11,9 +11,9 @@ namespace MediaManager.API.Data
         {
             var songList = new List<FileEntryDto>()
             {
-                new FileEntryDto() { Id = 1, Title="All of my love.mp3" },
-                new FileEntryDto() { Id = 2, Title="Beat Box Extreme.mp3" },
-                new FileEntryDto() { Id = 3, Title= "Lady in Red.mp3" }
+                new FileEntryDto() { Id = 1, Name="All of my love.mp3" },
+                new FileEntryDto() { Id = 2, Name="Beat Box Extreme.mp3" },
+                new FileEntryDto() { Id = 3, Name= "Lady in Red.mp3" }
             };
             Volumes = new List<VolumeDto>()
             {
@@ -28,14 +28,14 @@ namespace MediaManager.API.Data
                         new M3uFileDto()
                         {
                             Id=1,
-                            Name="ShaNaNa.m3u",
+                            Title="ShaNaNa.m3u",
                             Created=DateTime.Now,
                             FilesInM3U = songList
                         },
                         new M3uFileDto()
                         {
                             Id=4,
-                            Name="WakeAndBake.m3u",
+                            Title="WakeAndBake.m3u",
                             Created=DateTime.Now,
                             FilesInM3U = songList
                         }
@@ -52,14 +52,14 @@ namespace MediaManager.API.Data
                         new M3uFileDto()
                         {
                             Id=2,
-                            Name="KillerBs.m3u",
+                            Title="KillerBs.m3u",
                             Created=DateTime.Now,
                             FilesInM3U = songList
                         },
                         new M3uFileDto()
                         {
                             Id=5,
-                            Name="Moonlight.m3u",
+                            Title="Moonlight.m3u",
                             Created=DateTime.Now,
                             FilesInM3U = songList
                         }
@@ -76,14 +76,14 @@ namespace MediaManager.API.Data
                         new M3uFileDto()
                         {
                             Id=3,
-                            Name="DontFallAsleep.m3u",
+                            Title="DontFallAsleep.m3u",
                             Created=DateTime.Now,
                             FilesInM3U = songList
                         },
                         new M3uFileDto()
                         {
                             Id=6,
-                            Name="FeelinGood.m3u",
+                            Title="FeelinGood.m3u",
                             Created=DateTime.Now,
                             FilesInM3U = songList
                         }

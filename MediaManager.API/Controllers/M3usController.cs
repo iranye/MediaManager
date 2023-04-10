@@ -31,7 +31,7 @@ namespace MediaManager.API.Controllers
             }
         }
 
-        [HttpGet("{m3uId}")]
+        [HttpGet("{m3uId}", Name = "GetM3uFile")]
         public ActionResult<M3uFileDto> GetM3uFile(string moniker, int m3uId)
         {
             try
@@ -52,6 +52,37 @@ namespace MediaManager.API.Controllers
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
+        }
+
+        [HttpPost]
+        public ActionResult<M3uFileDto> CreateM3uFile(string moniker, M3uFileDtoForUpsert m3uFile)
+        {
+            var volume = VolumesDataStore.Current.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
+            if (volume is null)
+            {
+                return NotFound();
+            }
+
+            var maxId = VolumesDataStore.Current
+                .Volumes.SelectMany(c => c.M3uFiles).Max(x => x.Id);
+
+            var m3uFileResponse = new M3uFileDto()
+            {
+                Id = ++maxId,
+                Title  = m3uFile.Title,
+                Created = DateTime.Now,
+                FilesInM3U = m3uFile.FilesInM3U
+            };
+
+            volume.M3uFiles.Add(m3uFileResponse);
+
+            return CreatedAtRoute("GetM3uFile",
+                 new
+                 {
+                     moniker = moniker,
+                     m3uId = m3uFileResponse.Id
+                 },
+                 m3uFileResponse);
         }
     }
 }

@@ -12,7 +12,7 @@
 
         public int TotalMegaBytes { get; set; } = 42;
 
-        public string Name { get; set; } = String.Empty;
+        public string Title { get; set; } = String.Empty;
 
         public DateTime Created { get; set; } = DateTime.MinValue;
 
@@ -22,7 +22,7 @@
 
         public override string ToString()
         {
-            return Name;
+            return Title;
         }
     }
 }
