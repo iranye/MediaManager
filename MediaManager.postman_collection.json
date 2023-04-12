@@ -154,6 +154,69 @@
 				"method": "GET",
 				"header": [],
 				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/volumes/kgon-01/m3us/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"volumes",
+						"kgon-01",
+						"m3us",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST M3u",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Dance\",\n    \"filesInM3U\": [\n        {\n            \"id\": 1,\n            \"name\": \"All of my love.mp3\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Beat Box Extreme.mp3\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Lady in Red.mp3\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/volumes/kgon-01/m3us",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"volumes",
+						"kgon-01",
+						"m3us"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT M3u",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Mance\",\n    \"filesInM3U\": [\n        {\n            \"id\": 12,\n            \"name\": \"janky leg.mp3\"\n        },\n        {\n            \"id\": 23,\n            \"name\": \"The Red.mp3\"\n        }\n    ]\n}"
+				},
+				"url": {
 					"raw": "https://localhost:{{portNumber}}/api/volumes/kgon-01/m3us/1",
 					"protocol": "https",
 					"host": [
@@ -165,6 +228,175 @@
 						"volumes",
 						"kgon-01",
 						"m3us",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE M3u",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Mance\",\n    \"filesInM3U\": [\n        {\n            \"id\": 1,\n            \"name\": \"All of my love.mp3\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Lady in Red.mp3\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/volumes/kgon-01/m3us/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"volumes",
+						"kgon-01",
+						"m3us",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH M3u",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/title\",\n        \"value\": \"FakoBako.m3u\"\n    }\n]"
+				},
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/volumes/kgon-01/m3us/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"volumes",
+						"kgon-01",
+						"m3us",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH M3u Multiple",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/title\",\n        \"value\": \"MahiMahi.m3u\"\n    },\n    {\n        \"op\": \"replace\",\n        \"path\": \"/filesinm3u\",\n        \"value\": [\n            {\n                \"id\": 12,\n                \"name\": \"All of my leg.mp3\"\n            },\n            {\n                \"id\": 23,\n                \"name\": \"Lady is Rare.mp3\"\n            }\n        ]\n    }\n]"
+				},
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/volumes/kgon-01/m3us/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"volumes",
+						"kgon-01",
+						"m3us",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "railway-GetVolumes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mediamanager-production.up.railway.app/api/volumes",
+					"protocol": "https",
+					"host": [
+						"mediamanager-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"volumes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "railway-GetVolumeByName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mediamanager-production.up.railway.app/api/volumes/kgon-01",
+					"protocol": "https",
+					"host": [
+						"mediamanager-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"volumes",
+						"kgon-01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "railway-GetFile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"url": {
+					"raw": "https://mediamanager-production.up.railway.app/api/files/1",
+					"protocol": "https",
+					"host": [
+						"mediamanager-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"files",
 						"1"
 					]
 				}
