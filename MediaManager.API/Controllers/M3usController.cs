@@ -14,12 +14,21 @@ namespace MediaManager.API.Controllers
     [Route("api/volumes/{moniker}/m3us")]
     public class M3usController:ControllerBase
     {
+        private readonly ILogger<M3usController> logger;
+        private readonly VolumesDataStore volumesDataStore;
+
+        public M3usController(ILogger<M3usController> logger, VolumesDataStore volumesDataStore)
+        {
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this.volumesDataStore = volumesDataStore ?? throw new ArgumentNullException(nameof(volumesDataStore));
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<FileEntryDto>> GetFileEntries(string moniker)
         {
             try
             {
-                var result = VolumesDataStore.Current.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
+                var result = volumesDataStore.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
                 if (result is null)
                 {
                     return NotFound();
@@ -28,7 +37,8 @@ namespace MediaManager.API.Controllers
             }
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                logger.LogCritical("[M3usController] Exception in GET method Volume with moniker {moniker} '{Message}'.", moniker, ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
             }
         }
 
@@ -37,7 +47,7 @@ namespace MediaManager.API.Controllers
         {
             try
             {
-                var volume = VolumesDataStore.Current.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
+                var volume = volumesDataStore.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
                 if (volume is null)
                 {
                     return NotFound();
@@ -51,7 +61,8 @@ namespace MediaManager.API.Controllers
             }
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                logger.LogCritical("[M3usController] Exception in GET method Volume with moniker {moniker} '{Message}'.", moniker, ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
             }
         }
 
@@ -60,13 +71,13 @@ namespace MediaManager.API.Controllers
         {
             try
             {
-                var volume = VolumesDataStore.Current.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
+                var volume = volumesDataStore.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
                 if (volume is null)
                 {
                     return NotFound();
                 }
 
-                var maxId = VolumesDataStore.Current
+                var maxId = volumesDataStore
                     .Volumes.SelectMany(c => c.M3uFiles).Max(x => x.Id);
 
                 var m3uFileResponse = new M3uFileDto()
@@ -89,16 +100,17 @@ namespace MediaManager.API.Controllers
             }
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                logger.LogCritical("[M3usController] Exception in POST method Volume with moniker {moniker} '{Message}'.", moniker, ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
             }
         }
 
         [HttpPut("{m3uId}")]
-        public ActionResult UpdatePointOfInterest(string moniker, int m3uId, M3uFileDtoForUpsert m3uFile)
+        public ActionResult UpdateM3u(string moniker, int m3uId, M3uFileDtoForUpsert m3uFile)
         {
             try
             {
-                var volume = VolumesDataStore.Current.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
+                var volume = volumesDataStore.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
                 if (volume is null)
                 {
                     return NotFound();
@@ -119,7 +131,8 @@ namespace MediaManager.API.Controllers
             }
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                logger.LogCritical("[M3usController] Exception in PUT method Volume with moniker: {moniker}, m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
             }
         }
 
@@ -128,7 +141,7 @@ namespace MediaManager.API.Controllers
         {
             try
             {
-                var volume = VolumesDataStore.Current.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
+                var volume = volumesDataStore.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
                 if (volume is null)
                 {
                     return NotFound();
@@ -166,7 +179,8 @@ namespace MediaManager.API.Controllers
             }
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                logger.LogCritical("[M3usController] Exception in PATCH method Volume with moniker: {moniker}, m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
             }
         }
 
@@ -175,7 +189,7 @@ namespace MediaManager.API.Controllers
         {
             try
             {
-                var volume = VolumesDataStore.Current.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
+                var volume = volumesDataStore.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
                 if (volume is null)
                 {
                     return NotFound();
@@ -192,7 +206,8 @@ namespace MediaManager.API.Controllers
             }                
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                logger.LogCritical("[M3usController] Exception in DELETE method Volume with moniker: {moniker}, m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
             }
         }
     }

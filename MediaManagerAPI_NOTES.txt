@@ -4,7 +4,9 @@ Working from a json file PROBABLY won't work, work from a DB instead.
 Use Fluent Validation
 async Controller Actions
 
-Logging (i.e., ex.Message) to file + LogController
+VolumesController needs POST,PUT,PATCH
+
+Logging (i.e., ex.Message) to file + LogController (i.e., make logs available via API endpoint)
 
 Implement Repository then query string logic: ?includeM3us=true
 

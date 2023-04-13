@@ -13,16 +13,26 @@ namespace MediaManager.API.Controllers
     [Route("api/volumes")]
     public class VolumesController : ControllerBase
     {
+        private readonly ILogger<VolumesController> logger;
+        private readonly VolumesDataStore volumesDataStore;
+
+        public VolumesController(ILogger<VolumesController> logger, VolumesDataStore volumesDataStore)
+        {
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this.volumesDataStore = volumesDataStore ?? throw new ArgumentNullException(nameof(volumesDataStore));
+        }
+
         public ActionResult<IEnumerable<VolumeDto>> GetVolumes(bool includeM3us = false)
         {
             try
             {
-                var results = VolumesDataStore.Current.Volumes;
+                var results = volumesDataStore.Volumes;
                 return Ok(results);
             }
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                logger.LogCritical("[VolumesController] Exception in GET Volumes method '{Message}'.", ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
             }
         }
 
@@ -31,16 +41,18 @@ namespace MediaManager.API.Controllers
         {
             try
             {
-                var result = VolumesDataStore.Current.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
+                var result = volumesDataStore.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
                 if (result is null)
                 {
+                    logger.LogInformation("[VolumesController] Volume with moniker {moniker} not found.", moniker);
                     return NotFound();
                 }
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                logger.LogCritical("[VolumesController] Exception in GET method Volume with moniker: {moniker} '{Message}'.", moniker, ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
             }
         }
     }

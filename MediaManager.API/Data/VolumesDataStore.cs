@@ -5,7 +5,6 @@ namespace MediaManager.API.Data
     public class VolumesDataStore
     {
         public List<VolumeDto> Volumes { get; set; }
-        public static VolumesDataStore Current { get; } = new VolumesDataStore();
 
         public VolumesDataStore()
         {

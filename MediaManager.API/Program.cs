@@ -1,4 +1,5 @@
 
+using MediaManager.API.Data;
 using Microsoft.AspNetCore.StaticFiles;
 
 namespace MediaManager.API
@@ -20,6 +21,8 @@ namespace MediaManager.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
+
+            builder.Services.AddSingleton<VolumesDataStore>();
 
             var app = builder.Build();
 
