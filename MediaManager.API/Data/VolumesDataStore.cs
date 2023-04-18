@@ -19,8 +19,8 @@ namespace MediaManager.API.Data
                 new VolumeDto()
                 {
                     Id=1,
-                    Title="KGON-01",
-                    Moniker="kgon-01",
+                    Title="KGON01",
+                    Moniker="kgon01",
                     Created = DateTime.Now,
                     M3uFiles = new List<M3uFileDto>()
                     {
@@ -43,8 +43,8 @@ namespace MediaManager.API.Data
                 new VolumeDto()
                 {
                     Id=2,
-                    Title="KGON-02",
-                    Moniker="kgon-02",
+                    Title="KGON02",
+                    Moniker="kgon02",
                     Created = DateTime.Now,
                     M3uFiles = new List<M3uFileDto>()
                     {
@@ -66,9 +66,9 @@ namespace MediaManager.API.Data
                 },
                 new VolumeDto()
                 {
-                    Id=2,
-                    Title="Mellow-01",
-                    Moniker="mellow-01",
+                    Id=3,
+                    Title="Mellow01",
+                    Moniker="mellow01",
                     Created = DateTime.Now,
                     M3uFiles = new List<M3uFileDto>()
                     {

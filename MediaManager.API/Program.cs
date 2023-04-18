@@ -1,6 +1,7 @@
 
 using MediaManager.API.Data;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.EntityFrameworkCore;
 
 namespace MediaManager.API
 {
@@ -24,6 +25,12 @@ namespace MediaManager.API
 
             builder.Services.AddSingleton<VolumesDataStore>();
 
+            builder.Services.AddDbContext<MediaManagerContext>(dbContextOptions =>
+                dbContextOptions.UseSqlServer(builder.Configuration.GetConnectionString("MediaManagerConnectionString"))
+            );
+
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
