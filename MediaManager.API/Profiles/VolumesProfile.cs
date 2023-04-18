@@ -10,5 +10,6 @@ public class VolumesProfile:Profile
     {
         CreateMap<Volume, VolumeDto>();
         CreateMap<Volume, VolumeWithoutM3us>();
+        CreateMap<VolumeForUpsert, Volume>();       
     }
 }

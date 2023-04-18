@@ -8,7 +8,11 @@ public interface IMediaManagerRepository
 {
     Task<IEnumerable<Volume>> GetVolumesAsync();
 
-    Task<Volume?> GetVolumeAsync(string moniker, bool includeM3us);
+    Task<Volume?> GetVolumeAsync(string moniker, bool includeM3us = false);
+
+    void AddVolume(Volume volume);
+
+    Task<bool> SaveChangesAsync();
 }
 
 public class MediaManagerRepository : IMediaManagerRepository
@@ -25,7 +29,7 @@ public class MediaManagerRepository : IMediaManagerRepository
         return await context.Volumes.OrderBy(c => c.Title).ToListAsync();
     }
 
-    public async Task<Volume?> GetVolumeAsync(string moniker, bool includeM3us)
+    public async Task<Volume?> GetVolumeAsync(string moniker, bool includeM3us = false)
     {
         if (includeM3us)
         {
@@ -34,5 +38,15 @@ public class MediaManagerRepository : IMediaManagerRepository
         }
         return await context.Volumes
             .Where(v => v.Moniker == moniker).FirstOrDefaultAsync();
+    }
+
+    public void AddVolume(Volume volume)
+    {
+        context.Volumes.Add(volume);
+    }
+
+    public async Task<bool> SaveChangesAsync()
+    {
+        return (await context.SaveChangesAsync() >= 0);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MediaManager.API.Data;
+using MediaManager.API.Data.Entities;
 using MediaManager.API.Helpers;
 using MediaManager.API.Model;
 using MediaManager.API.Services;
@@ -65,44 +65,38 @@ namespace MediaManager.API.Controllers
             }
         }
 
-        //[HttpPost]
-        //public async Task< ActionResult<VolumeDto>> CreateVolume(VolumeForUpsert volume)
-        //{
-        //    try
-        //    {
-        //        var maxId = volumesDataStore
-        //            .Volumes.Max(x => x.Id);
+        [HttpPost]
+        public async Task< ActionResult<VolumeDto>> CreateVolume(VolumeForUpsert volume)
+        {
+            try
+            {
+                var moniker = String.IsNullOrWhiteSpace(volume.Moniker) ? volume.Title.GenerateMoniker() : volume.Moniker.Trim().ToLower();
 
-        //        var moniker = String.IsNullOrWhiteSpace(volume.Moniker) ? volume.Title.GenerateMoniker() : volume.Moniker.Trim().ToLower();
+                var existingVolume = await repository.GetVolumeAsync(moniker);
+                if (existingVolume is not null)
+                {
+                    return BadRequest($"Volume with Moniker: '{existingVolume.Moniker}' already in use (volumeId={existingVolume.Id}");
+                }
 
-        //        var existingVolume = volumesDataStore.Volumes.FirstOrDefault(v => v.Moniker.ToLower() == moniker);
-        //        if (existingVolume is not null)
-        //        {
-        //            return BadRequest($"Volume with Moniker: '{existingVolume.Moniker}' already in use (volumeId={existingVolume.Id}");
-        //        }
+                var volumeModel = mapper.Map<Volume>(volume);
 
-        //        var volumeResponse = new VolumeDto()
-        //        {
-        //            Id = ++maxId,
-        //            Title = volume.Title,
-        //            Created = DateTime.Now,
-        //            Moniker = moniker
-        //        };
+                repository.AddVolume(volumeModel);
+                await repository.SaveChangesAsync();
 
-        //        volumesDataStore.Volumes.Add(volumeResponse);
+                var newVolume = mapper.Map<VolumeDto>(volumeModel);
 
-        //        return CreatedAtRoute("GetVolume",
-        //             new
-        //             {
-        //                 moniker = moniker,
-        //             },
-        //             volumeResponse);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        logger.LogCritical("[VolumesController] Exception in POST method: '{Message}'.", ex.Message);
-        //        return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
-        //    }
-        //}
+                return CreatedAtRoute("GetVolume",
+                     new
+                     {
+                         moniker = moniker,
+                     },
+                     newVolume);
+            }
+            catch (Exception ex)
+            {
+                logger.LogCritical("[VolumesController] Exception in POST method: '{Message}'.", ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
+            }
+        }
     }
 }
