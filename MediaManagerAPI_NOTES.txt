@@ -6,6 +6,8 @@ async Controller Actions
 
 VolumesController needs PUT,PATCH
 
+M3uFile Schema make M3uFiles.VolumeId NULLABLE
+
 Logging (i.e., ex.Message) to file + LogController (i.e., make logs available via API endpoint)
 
 Implement Repository then query string logic: ?includeM3us=true

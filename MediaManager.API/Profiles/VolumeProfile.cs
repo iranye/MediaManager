@@ -4,9 +4,9 @@ using MediaManager.API.Model;
 
 namespace MediaManager.API.Profiles;
 
-public class VolumesProfile:Profile
+public class VolumeProfile:Profile
 {
-    public VolumesProfile()
+    public VolumeProfile()
     {
         CreateMap<Volume, VolumeDto>();
         CreateMap<Volume, VolumeWithoutM3us>();

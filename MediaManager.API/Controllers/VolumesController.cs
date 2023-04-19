@@ -27,7 +27,7 @@ namespace MediaManager.API.Controllers
             this.mapper = mapper;
         }
 
-        public async Task< ActionResult<IEnumerable<VolumeWithoutM3us>>> GetVolumes()
+        public async Task<ActionResult<IEnumerable<VolumeWithoutM3us>>> GetVolumes()
         {
             try
             {
@@ -42,7 +42,7 @@ namespace MediaManager.API.Controllers
         }
 
         [HttpGet("{moniker}", Name = "GetVolume")]
-        public async Task< ActionResult<VolumeDto>> GetVolume(string moniker, bool includeM3us=false)
+        public async Task<IActionResult> GetVolume(string moniker, bool includeM3us=false)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace MediaManager.API.Controllers
         }
 
         [HttpPost]
-        public async Task< ActionResult<VolumeDto>> CreateVolume(VolumeForUpsert volume)
+        public async Task<ActionResult<VolumeDto>> CreateVolume(VolumeForUpsert volume)
         {
             try
             {

@@ -10,4 +10,9 @@ public class VolumeForUpsert
 
     [MaxLength(12)]
     public string? Moniker { get; set; }
+
+    public override string ToString()
+    {
+        return Title;
+    }
 }

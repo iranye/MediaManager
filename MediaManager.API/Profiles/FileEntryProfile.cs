@@ -4,11 +4,10 @@ using MediaManager.API.Model;
 
 namespace MediaManager.API.Profiles;
 
-public class M3usProfile : Profile
+public class FileEntryProfile : Profile
 {
-    public M3usProfile()
+    public FileEntryProfile()
     {
-        CreateMap<M3uFile, M3uFileDto>();
-
-   }
+        CreateMap<FileEntry, FileEntryDto>();
+    }
 }

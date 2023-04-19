@@ -21,4 +21,9 @@ public class FileEntry
     [ForeignKey("M3uId")]
     public M3uFile? M3uFile { get; set; }
     public int M3uId { get; set; }
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }

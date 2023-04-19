@@ -12,6 +12,8 @@ public interface IMediaManagerRepository
 
     void AddVolume(Volume volume);
 
+    Task<IEnumerable<M3uFile>?> GetM3usAsync(string moniker, bool includeFileEntries = false);
+
     Task<bool> SaveChangesAsync();
 }
 
@@ -39,6 +41,39 @@ public class MediaManagerRepository : IMediaManagerRepository
         return await context.Volumes
             .Where(v => v.Moniker == moniker).FirstOrDefaultAsync();
     }
+
+    public async Task<bool> VolumeExists(string moniker)
+    {
+        return await context.Volumes.AnyAsync(v => v.Moniker == moniker);
+    }
+
+    public async Task<IEnumerable<M3uFile>?> GetM3usAsync(string moniker, bool includeFileEntries = false)
+    {
+        var volume = await context.Volumes.Include(v => v.M3uFiles)
+            .Where(v => v.Moniker == moniker).FirstOrDefaultAsync();
+        if (volume is not null && includeFileEntries)
+        {
+            return await GetM3usAsync(volume.Id);
+        }
+
+        return volume?.M3uFiles;
+    }
+
+    public async Task<IEnumerable<M3uFile>?> GetM3usAsync(int volumeId)
+    {
+        return await context.M3uFiles.Include(m=>m.FilesInM3U)
+           .Where(m => m.VolumeId == volumeId)
+           .ToListAsync();
+    }
+
+    //public async Task<M3uFile> GetM3uAsync(int volumeId, int m3uId, bool includeFileEntries = false)
+    //{
+    //    var volume = await GetVolumeAsync(moniker);
+
+    //    return await context.M3uFiles
+    //       .Where(m => m.VolumeId == volume.Id && m.Id == m3uId)
+    //       .ToListAsync();
+    //}
 
     public void AddVolume(Volume volume)
     {
