@@ -4,6 +4,7 @@ using MediaManager.API.Model;
 using MediaManager.API.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections.Generic;
 
 namespace MediaManager.API.Controllers
@@ -43,7 +44,7 @@ namespace MediaManager.API.Controllers
                     var volumeExists = await repository.VolumeExistsAsync(moniker);
                     if (!volumeExists)
                     {
-                        logger.LogInformation("[M3usController] Volume with moniker {moniker} not found.", moniker);
+                        logger.LogInformation("[M3usController] Volume with moniker '{moniker}' not found.", moniker);
                         return NotFound();
                     }
                     result = await repository.GetM3usByVolumeAsync(moniker, includeFileEntries);
@@ -56,34 +57,48 @@ namespace MediaManager.API.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogCritical("[M3usController] Exception in GET method Volume with moniker {moniker} '{Message}'.", moniker, ex.Message);
+                logger.LogCritical("[M3usController] Exception in GET method Volume with moniker '{moniker}' '{Message}'.", moniker, ex.Message);
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
             }
         }
 
-        //[HttpGet("{m3uId}", Name = "GetM3uFile")]
-        //public async Task<ActionResult<M3uFileDto>> GetM3uFile(string moniker, int m3uId)
-        //{
-        //    try
-        //    {
-        //        var volume = volumesDataStore.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
-        //        if (volume is null)
-        //        {
-        //            return NotFound();
-        //        }
-        //        var m3uFile = volume.M3uFiles.FirstOrDefault(m => m.Id == m3uId);
-        //        if (m3uFile is null)
-        //        {
-        //            return NotFound();
-        //        }
-        //        return Ok(m3uFile);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        logger.LogCritical("[M3usController] Exception in GET method Volume with moniker {moniker} '{Message}'.", moniker, ex.Message);
-        //        return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
-        //    }
-        //}
+        [HttpGet("{m3uId}", Name = "GetM3uFile")]
+        public async Task<ActionResult<M3uFileDto>> GetM3uFile(string moniker, int m3uId)
+        {
+            try
+            {
+                var result = await repository.GetM3uByIdAsync(m3uId);
+                if (result == null)
+                {
+                    logger.LogInformation("[M3usController] M3u with Id {m3uId} not found.", m3uId);
+                    return NotFound();
+                }
+                if (moniker.Trim().ToLower() != "all")
+                {
+                    if (result != null && result.Volume?.Moniker == moniker)
+                    {
+                        return Ok(mapper.Map<M3uFileDto>(result));
+                    }
+                    var volumeExists = await repository.VolumeExistsAsync(moniker);
+                    if (!volumeExists)
+                    {
+                        logger.LogInformation("[M3usController] Volume '{moniker}' not found.", moniker);
+                        return NotFound();
+                    }
+                    else
+                    {
+                        logger.LogInformation("[M3usController] Volume '{moniker}' with M3ufile Id '{m3uId}' not found.", moniker, m3uId);
+                        return NotFound();
+                    }
+                }
+                return Ok(mapper.Map<M3uFileDto>(result));
+            }
+            catch (Exception ex)
+            {
+                logger.LogCritical("[M3usController] Exception in GET method Volume with moniker '{moniker}' '{Message}'.", moniker, ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
+            }
+        }
 
         //[HttpPost]
         //public async Task<ActionResult<M3uFileDto>> CreateM3uFile(string moniker, M3uFileDtoForUpsert m3uFile)
@@ -119,7 +134,7 @@ namespace MediaManager.API.Controllers
         //    }
         //    catch (Exception ex)
         //    {
-        //        logger.LogCritical("[M3usController] Exception in POST method Volume with moniker {moniker} '{Message}'.", moniker, ex.Message);
+        //        logger.LogCritical("[M3usController] Exception in POST method Volume with moniker '{moniker}' '{Message}'.", moniker, ex.Message);
         //        return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
         //    }
         //}
@@ -150,7 +165,7 @@ namespace MediaManager.API.Controllers
         //    }
         //    catch (Exception ex)
         //    {
-        //        logger.LogCritical("[M3usController] Exception in PUT method Volume with moniker: {moniker}, m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
+        //        logger.LogCritical("[M3usController] Exception in PUT method Volume with moniker: '{moniker}', m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
         //        return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
         //    }
         //}
@@ -198,7 +213,7 @@ namespace MediaManager.API.Controllers
         //    }
         //    catch (Exception ex)
         //    {
-        //        logger.LogCritical("[M3usController] Exception in PATCH method Volume with moniker: {moniker}, m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
+        //        logger.LogCritical("[M3usController] Exception in PATCH method Volume with moniker: '{moniker}', m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
         //        return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
         //    }
         //}
@@ -225,7 +240,7 @@ namespace MediaManager.API.Controllers
         //    }                
         //    catch (Exception ex)
         //    {
-        //        logger.LogCritical("[M3usController] Exception in DELETE method Volume with moniker: {moniker}, m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
+        //        logger.LogCritical("[M3usController] Exception in DELETE method Volume with moniker: '{moniker}', m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
         //        return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
         //    }
         //}
