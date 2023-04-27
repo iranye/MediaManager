@@ -8,6 +8,8 @@ public interface IMediaManagerRepository
 {
     Task<IEnumerable<Volume>> GetVolumesAsync();
 
+    Task<IEnumerable<M3uFile>?> GetM3usAsync(bool includeFileEntries = false);
+
     Task<Volume?> GetVolumeAsync(string moniker, bool includeM3us = false);
 
     Task<bool> VolumeExistsAsync(string moniker);
@@ -47,6 +49,18 @@ public class MediaManagerRepository : IMediaManagerRepository
     public async Task<bool> VolumeExistsAsync(string moniker)
     {
         return await context.Volumes.AnyAsync(v => v.Moniker == moniker);
+    }
+
+    public async Task<IEnumerable<M3uFile>?> GetM3usAsync(bool includeFileEntries = false)
+    {
+        IQueryable<M3uFile> query = context.M3uFiles.Include(m => m.Volume);
+
+        if (includeFileEntries)
+        {
+            query = query
+                .Include(m => m.FilesInM3U);
+        }
+        return await query.ToArrayAsync();
     }
 
     public async Task<IEnumerable<M3uFile>?> GetM3usByVolumeAsync(string moniker, bool includeFileEntries = false)

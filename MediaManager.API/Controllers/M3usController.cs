@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MediaManager.API.Data.Entities;
 using MediaManager.API.Model;
 using MediaManager.API.Services;
 using Microsoft.AspNetCore.JsonPatch;
@@ -32,13 +33,21 @@ namespace MediaManager.API.Controllers
         {
             try
             {
-                var volumeExists = await repository.VolumeExistsAsync(moniker);
-                if (!volumeExists)
+                IEnumerable<M3uFile>? result = null;
+                if (moniker.Trim().ToLower() == "all")
                 {
-                    logger.LogInformation("[M3usController] Volume with moniker {moniker} not found.", moniker);
-                    return NotFound();
+                    result = await repository.GetM3usAsync(includeFileEntries);
                 }
-                var result = await repository.GetM3usByVolumeAsync(moniker, includeFileEntries);
+                else
+                {
+                    var volumeExists = await repository.VolumeExistsAsync(moniker);
+                    if (!volumeExists)
+                    {
+                        logger.LogInformation("[M3usController] Volume with moniker {moniker} not found.", moniker);
+                        return NotFound();
+                    }
+                    result = await repository.GetM3usByVolumeAsync(moniker, includeFileEntries);
+                }
                 if (includeFileEntries)
                 {
                     return Ok(mapper.Map<IEnumerable<M3uFileDto>>(result));

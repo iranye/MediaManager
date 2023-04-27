@@ -12,6 +12,8 @@
 
         public string Title { get; set; } = String.Empty;
 
+        public string? VolumeMoniker { get; set; }
+
         public int TotalMegaBytes { get; set; } = 42;
 
         public DateTime Created { get; set; } = DateTime.MinValue;
