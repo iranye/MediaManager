@@ -1,9 +1,7 @@
 ﻿namespace MediaManager.API.Model
 {
-    public class VolumeWithoutM3us
+    public class VolumeWithoutM3usDto
     {
-        public int Id { get; set; }
-
         public string Title { get; set; } = String.Empty;
 
         public string Moniker { get; set; } = String.Empty;

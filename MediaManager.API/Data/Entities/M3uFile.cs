@@ -30,7 +30,7 @@ public class M3uFile
 
     [ForeignKey("VolumeId")]
     public Volume? Volume { get; set; }
-    public int VolumeId { get; set; }
+    public int? VolumeId { get; set; }
 
     public override string ToString()
     {

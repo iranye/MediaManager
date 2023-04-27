@@ -32,12 +32,13 @@ namespace MediaManager.API.Controllers
         {
             try
             {
-                var result = await repository.GetM3usAsync(moniker, includeFileEntries);
-                if (result is null)
+                var volumeExists = await repository.VolumeExistsAsync(moniker);
+                if (!volumeExists)
                 {
                     logger.LogInformation("[M3usController] Volume with moniker {moniker} not found.", moniker);
                     return NotFound();
                 }
+                var result = await repository.GetM3usByVolumeAsync(moniker, includeFileEntries);
                 if (includeFileEntries)
                 {
                     return Ok(mapper.Map<IEnumerable<M3uFileDto>>(result));

@@ -2,7 +2,7 @@
 
 namespace MediaManager.API.Model;
 
-public class VolumeForUpsert
+public class VolumeForUpsertDto
 {
     [Required(ErrorMessage = "Please provide Title")]
     [MaxLength(50)]

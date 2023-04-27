@@ -9,7 +9,7 @@ public class VolumeProfile:Profile
     public VolumeProfile()
     {
         CreateMap<Volume, VolumeDto>();
-        CreateMap<Volume, VolumeWithoutM3us>();
-        CreateMap<VolumeForUpsert, Volume>();       
+        CreateMap<Volume, VolumeWithoutM3usDto>();
+        CreateMap<VolumeForUpsertDto, Volume>();       
     }
 }

@@ -23,8 +23,6 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
 
-        builder.Services.AddSingleton<VolumesDataStore>();
-
         builder.Services.AddDbContext<MediaManagerContext>(dbContextOptions =>
             dbContextOptions.UseSqlServer(builder.Configuration.GetConnectionString("MediaManagerConnectionString"))
         );

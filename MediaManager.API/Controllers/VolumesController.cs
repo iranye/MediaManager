@@ -27,12 +27,12 @@ namespace MediaManager.API.Controllers
             this.mapper = mapper;
         }
 
-        public async Task<ActionResult<IEnumerable<VolumeWithoutM3us>>> GetVolumes()
+        public async Task<ActionResult<IEnumerable<VolumeWithoutM3usDto>>> GetVolumes()
         {
             try
             {
                 var results = await repository.GetVolumesAsync();
-                return Ok(mapper.Map<IEnumerable<VolumeWithoutM3us>>(results));
+                return Ok(mapper.Map<IEnumerable<VolumeWithoutM3usDto>>(results));
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace MediaManager.API.Controllers
                 {
                     return Ok(mapper.Map<VolumeDto>(result));
                 }
-                return Ok(mapper.Map<VolumeWithoutM3us>(result));
+                return Ok(mapper.Map<VolumeWithoutM3usDto>(result));
             }
             catch (Exception ex)
             {
@@ -66,16 +66,21 @@ namespace MediaManager.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<VolumeDto>> CreateVolume(VolumeForUpsert volume)
+        public async Task<ActionResult<VolumeDto>> CreateVolume(VolumeForUpsertDto volume)
         {
             try
             {
-                var moniker = String.IsNullOrWhiteSpace(volume.Moniker) ? volume.Title.GenerateMoniker() : volume.Moniker.Trim().ToLower();
-
-                var existingVolume = await repository.GetVolumeAsync(moniker);
-                if (existingVolume is not null)
+                var moniker = volume.Moniker?.Trim().ToLower();
+                if (String.IsNullOrWhiteSpace(moniker))
                 {
-                    return BadRequest($"Volume with Moniker: '{existingVolume.Moniker}' already in use (volumeId={existingVolume.Id}");
+                    moniker = volume.Title.GenerateMoniker();
+                    volume.Moniker = moniker;
+                }
+
+                var volumeExists = await repository.VolumeExistsAsync(moniker);
+                if (volumeExists)
+                {
+                    return BadRequest($"Volume with Moniker: '{moniker}' already in use");
                 }
 
                 var volumeModel = mapper.Map<Volume>(volume);
