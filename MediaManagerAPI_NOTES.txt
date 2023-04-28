@@ -1,17 +1,36 @@
+Update NotFound() and other "fail" statements to include a message (as it does in Camp API)
 
-Working from a json file PROBABLY won't work, work from a DB instead.
+Nuke the DB and test "auto migrate" code from coder-foundry
+
+Come up with a way to display DateTimes better: DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")
+    "created": "2023-04-28T09:13:38.076952-04:00",
+    "lastModified": null,
 
 Use Fluent Validation
-async Controller Actions
-
+	
 VolumesController needs PUT,PATCH
 
-M3uFile Schema make M3uFiles.VolumeId NULLABLE
+M3usController PUT need a way to detect if any changes and NOT update if no changes (currently always saves w/ updated LastModified DateTime)
 
 Logging (i.e., ex.Message) to file + LogController (i.e., make logs available via API endpoint)
 
-Implement Repository then query string logic: ?includeM3us=true
+For M3usController PUT, PATCH, make sure un-attached M3u can become attached (and vice-versa)
 
+BUSINESS RULES/BEHAVIOR START:
+An M3u can belong to 1 Volume, or NO Volume:
+Id	Title	TotalMegaBytes	Created	VolumeId
+7	Rammstein.m3u	42	2023-04-28 09:09:49.3707026	3
+8	Gaga.m3u	42	2023-04-28 09:13:38.0769520	NULL
+
+A FileEntry can only belong to 1 M3u:
+Id	Name	M3uId
+4	Lady in Red.mp3	1
+5	Back in the Saddle.mp3	1
+
+PUT M3usController with empty FileEntries will DELETE rows from the DB (if they're associated by m3uId)
+PUT M3usController with Volume="all" will update M3u but keep Volume association (if any)
+
+BUSINESS RULES/BEHAVIOR END
 
 
 mediamanager-production.up.railway.app

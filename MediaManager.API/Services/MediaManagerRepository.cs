@@ -26,6 +26,8 @@ public interface IMediaManagerRepository
 
     void Add<T>(T entity) where T : class;
 
+    public bool HasChanges();
+
     Task<bool> SaveChangesAsync();
 }
 
@@ -119,6 +121,11 @@ public class MediaManagerRepository : IMediaManagerRepository
     public void Add<T>(T entity) where T : class
     {
         context.Add(entity);
+    }
+
+    public bool HasChanges()
+    {
+        return context.ChangeTracker.HasChanges();
     }
 
     public async Task<bool> SaveChangesAsync()
