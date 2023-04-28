@@ -100,44 +100,55 @@ namespace MediaManager.API.Controllers
             }
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult<M3uFileDto>> CreateM3uFile(string moniker, M3uFileDtoForUpsert m3uFile)
-        //{
-        //    try
-        //    {
-        //        var volume = volumesDataStore.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
-        //        if (volume is null)
-        //        {
-        //            return NotFound();
-        //        }
+        [HttpPost]
+        public async Task<ActionResult<M3uFileDto>> CreateM3uFile(string moniker, M3uFileDtoForUpsert m3uFile)
+        {
+            try
+            {
+                if (m3uFile.FilesInM3U.Any(f => f.Id > 0))
+                {
+                    return BadRequest($"Id(s) must be 0 for INSERT");
+                }
+                var m3uIsAttached = moniker.Trim().ToLower() != "all";
+                Volume? volume = m3uIsAttached ? await repository.GetVolumeAsync(moniker) : null;
+                if (m3uIsAttached)
+                {
+                    if (volume is null)
+                    {
+                        logger.LogInformation("[M3usController] Volume with moniker '{moniker}' not found.", moniker);
+                        return NotFound($"Volume with moniker '{moniker}' not found.");
+                    }
+                }
 
-        //        var maxId = volumesDataStore
-        //            .Volumes.SelectMany(c => c.M3uFiles).Max(x => x.Id);
+                // TODO: support "force" op to allow creation of duplicate M3u(s).
+                var m3uExists = await repository.M3uExistsAsync(m3uFile.Title);
+                if (m3uExists)
+                {
+                    return BadRequest($"M3u with Title: '{m3uFile.Title}' already in use");
+                }
 
-        //        var m3uFileResponse = new M3uFileDto()
-        //        {
-        //            Id = ++maxId,
-        //            Title = m3uFile.Title,
-        //            Created = DateTime.Now,
-        //            FilesInM3U = m3uFile.FilesInM3U
-        //        };
+                var finalM3u = mapper.Map<M3uFile>(m3uFile);
+                finalM3u.Volume = volume;
+                repository.Add(finalM3u);
+                if (await repository.SaveChangesAsync())
+                {
+                    return CreatedAtRoute("GetM3uFile",
+                         new
+                         {
+                             moniker = moniker,
+                             m3uId = finalM3u.Id
+                         },
+                         finalM3u);
+                }
 
-        //        volume.M3uFiles.Add(m3uFileResponse);
-
-        //        return CreatedAtRoute("GetM3uFile",
-        //             new
-        //             {
-        //                 moniker = moniker,
-        //                 m3uId = m3uFileResponse.Id
-        //             },
-        //             m3uFileResponse);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        logger.LogCritical("[M3usController] Exception in POST method Volume with moniker '{moniker}' '{Message}'.", moniker, ex.Message);
-        //        return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
-        //    }
-        //}
+                return BadRequest("Failed to save new M3u");
+            }
+            catch (Exception ex)
+            {
+                logger.LogCritical("[M3usController] Exception in POST method Volume with moniker '{moniker}' '{Message}'.", moniker, ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
+            }
+        }
 
         //[HttpPut("{m3uId}")]
         //public async Task<ActionResult> UpdateM3u(string moniker, int m3uId, M3uFileDtoForUpsert m3uFile)

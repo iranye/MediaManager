@@ -2,6 +2,7 @@ using MediaManager.API.Data;
 using MediaManager.API.Services;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace MediaManager.API;
 
@@ -16,7 +17,7 @@ public class Program
         builder.Services.AddControllers(options =>
         {
             options.ReturnHttpNotAcceptable = true;
-        }).AddNewtonsoftJson()
+        }).AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
           .AddXmlDataContractSerializerFormatters();
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

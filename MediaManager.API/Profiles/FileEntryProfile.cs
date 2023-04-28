@@ -8,6 +8,6 @@ public class FileEntryProfile : Profile
 {
     public FileEntryProfile()
     {
-        CreateMap<FileEntry, FileEntryDto>();
+        CreateMap<FileEntry, FileEntryDto>().ReverseMap();
     }
 }

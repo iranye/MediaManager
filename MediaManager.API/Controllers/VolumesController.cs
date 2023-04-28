@@ -78,7 +78,7 @@ namespace MediaManager.API.Controllers
                 }
 
                 var volumeExists = await repository.VolumeExistsAsync(moniker);
-                if (volumeExists)
+                if (volumeExists || moniker == "all")
                 {
                     return BadRequest($"Volume with Moniker: '{moniker}' already in use");
                 }
