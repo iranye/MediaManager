@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MediaManager.API.Data.Entities;
 
-public class M3uFile
+public sealed class M3uFile
 {
     public M3uFile(string title)
     {

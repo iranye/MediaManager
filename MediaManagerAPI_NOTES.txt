@@ -10,7 +10,10 @@ Use Fluent Validation
 	
 VolumesController needs PUT,PATCH
 
-M3usController PUT need a way to detect if any changes and NOT update if no changes (currently always saves w/ updated LastModified DateTime)
+M3usController
+ - PUT need a way to detect if any changes and NOT update if no changes (currently always saves w/ updated LastModified DateTime)
+ - Should be able to associate/dis-associated M3u to Volume via PUT or PATCH
+
 
 Logging (i.e., ex.Message) to file + LogController (i.e., make logs available via API endpoint)
 
@@ -22,16 +25,18 @@ Id	Title	TotalMegaBytes	Created	VolumeId
 7	Rammstein.m3u	42	2023-04-28 09:09:49.3707026	3
 8	Gaga.m3u	42	2023-04-28 09:13:38.0769520	NULL
 
-A FileEntry can only belong to 1 M3u:
-Id	Name	M3uId
-4	Lady in Red.mp3	1
-5	Back in the Saddle.mp3	1
+A FileEntry can belong multiple M3us
 
 PUT M3usController with empty FileEntries will DELETE rows from the DB (if they're associated by m3uId)
 PUT M3usController with Volume="all" will update M3u but keep Volume association (if any)
 
 BUSINESS RULES/BEHAVIOR END
 
+USER STORIES
+Give me a playlist of random FileEntries based on e.g., Tag (e.g., Rock)
+
+
+USER STORIES END
 
 mediamanager-production.up.railway.app
 

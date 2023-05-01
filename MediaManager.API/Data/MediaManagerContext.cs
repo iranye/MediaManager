@@ -31,6 +31,11 @@ public class MediaManagerContext : DbContext
             );
 
         modelBuilder.Entity<M3uFile>()
+            .HasMany(m => m.FilesInM3U)
+            .WithMany(f => f.M3uFiles)
+            .UsingEntity<M3uFileEntry>();
+
+        modelBuilder.Entity<M3uFile>()
             .HasData(
                 new M3uFile("ShaNaNa.m3u")
                 {
@@ -51,13 +56,13 @@ public class MediaManagerContext : DbContext
 
         modelBuilder.Entity<FileEntry>()
             .HasData(
-                new FileEntry("All of my love.mp3") { Id = 1, M3uId = 1 },
-                new FileEntry("Rock and Roll All Nite.mp3") { Id = 2, M3uId = 1 },
+                new FileEntry("All of my love.mp3") { Id = 1 }, // M3uId = 1
+                new FileEntry("Rock and Roll All Nite.mp3") { Id = 2 }, // M3uId = 1
 
-                new FileEntry("Beat Box Extreme.mp3") { Id = 3, M3uId = 2 },
+                new FileEntry("Beat Box Extreme.mp3") { Id = 3 }, // M3uId = 2
 
-                new FileEntry("Lady in Red.mp3") { Id = 4, M3uId = 3 },
-                new FileEntry("Back in the Saddle.mp3") { Id = 5, M3uId = 3 }
+                new FileEntry("Lady in Red.mp3") { Id = 4 }, // M3uId = 3
+                new FileEntry("Back in the Saddle.mp3") { Id = 5 } // M3uId = 3
             );
     }
 }

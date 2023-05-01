@@ -105,10 +105,10 @@ namespace MediaManager.API.Controllers
         {
             try
             {
-                if (m3uFile.FilesInM3U.Any(f => f.Id > 0))
-                {
-                    return BadRequest($"Id(s) must be 0 for INSERT");
-                }
+                //if (m3uFile.FilesInM3U.Any(f => f.Id > 0))
+                //{
+                //    return BadRequest($"Id(s) must be 0 for INSERT");
+                //}
                 var m3uIsAttached = moniker.Trim().ToLower() != "all";
                 Volume? volume = m3uIsAttached ? await repository.GetVolumeAsync(moniker) : null;
                 if (m3uIsAttached)
@@ -127,18 +127,42 @@ namespace MediaManager.API.Controllers
                     return BadRequest($"M3u with Title: '{m3uFile.Title}' already in use");
                 }
 
+                var fileEntriesToRemove = new List<FileEntryDto>();
+                var fileEntriesToAdd = new List<FileEntry>();
+                var fileEntriesFromStore = await repository.GetFileEntriesAsync(); // TODO: only get files based on supplied list
+                if (fileEntriesFromStore != null)
+                {
+                    foreach (var fileEntry in m3uFile.FilesInM3U)
+                    {
+                        var fileEntryFromStore = fileEntriesFromStore.FirstOrDefault(f => f.Name == fileEntry.Name);
+                        if (fileEntryFromStore != null)
+                        {
+                            fileEntriesToRemove.Add(fileEntry);
+                            fileEntriesToAdd.Add(fileEntryFromStore);
+                        }
+                    }
+                }
+                foreach (var fileEntryToRemove in fileEntriesToRemove)
+                {
+                    m3uFile.FilesInM3U.Remove(fileEntryToRemove);
+                }
                 var finalM3u = mapper.Map<M3uFile>(m3uFile);
+                foreach (var fileEntryToAdd in fileEntriesToAdd)
+                {
+                    finalM3u.FilesInM3U.Add(fileEntryToAdd);
+                }
                 finalM3u.Volume = volume;
                 repository.Add(finalM3u);
                 if (await repository.SaveChangesAsync())
                 {
+                    var newM3u = mapper.Map<M3uFileDto>(finalM3u);
                     return CreatedAtRoute("GetM3uFile",
                          new
                          {
                              moniker = moniker,
-                             m3uId = finalM3u.Id
+                             m3uId = newM3u.Id
                          },
-                         finalM3u);
+                         newM3u);
                 }
 
                 return BadRequest("Failed to save new M3u");
@@ -199,26 +223,30 @@ namespace MediaManager.API.Controllers
         //{
         //    try
         //    {
-        //        var volume = volumesDataStore.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
-        //        if (volume is null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        var m3uFileFromStore = volume.M3uFiles.FirstOrDefault(c => c.Id == m3uId);
+        //        var m3uFileFromStore = await repository.GetM3uByIdAsync(m3uId);
         //        if (m3uFileFromStore == null)
         //        {
+        //            logger.LogInformation("[M3usController] M3u with Id {m3uId} not found.", m3uId);
         //            return NotFound();
         //        }
-
-        //        var m3uFileToPatch = new M3uFileDtoForUpsert()
+        //        var m3uIsAttached = moniker.Trim().ToLower() != "all";
+        //        if (m3uIsAttached)
         //        {
-        //            Title = m3uFileFromStore.Title,
-        //            FilesInM3U = m3uFileFromStore.FilesInM3U
-        //        };
+        //            var volumeExists = await repository.VolumeExistsAsync(moniker);
+        //            if (!volumeExists)
+        //            {
+        //                logger.LogInformation("[M3usController] Volume '{moniker}' not found.", moniker);
+        //                return NotFound($"Volume '{{moniker}}' not found.");
+        //            }
+        //            if (m3uFileFromStore.Volume?.Moniker != moniker)
+        //            {
+        //                logger.LogInformation("[M3usController] Volume '{moniker}' with M3ufile Id '{m3uId}' not found.", moniker, m3uId);
+        //                return NotFound($"Volume '{moniker}' with M3u Id '{m3uId}' not found.");
+        //            }
+        //        }
 
+        //        var m3uFileToPatch = mapper.Map<M3uFileDtoForUpsert>(m3uFileFromStore);
         //        patchDocument.ApplyTo(m3uFileToPatch, ModelState);
-
         //        if (!ModelState.IsValid)
         //        {
         //            return BadRequest(ModelState);
@@ -229,11 +257,18 @@ namespace MediaManager.API.Controllers
         //            return BadRequest(ModelState);
         //        }
 
-        //        m3uFileFromStore.Title = m3uFileToPatch.Title;
-        //        m3uFileFromStore.FilesInM3U = m3uFileToPatch.FilesInM3U;
-        //        m3uFileFromStore.LastModified = DateTime.Now;
+        //        mapper.Map(m3uFileToPatch, m3uFileFromStore);
 
-        //        return NoContent();
+        //        if (repository.HasChanges())
+        //        {
+        //            m3uFileFromStore.LastModified = DateTime.Now;
+        //            if (await repository.SaveChangesAsync())
+        //            {
+        //                return NoContent();
+        //            }
+        //        }
+
+        //        return BadRequest("Failed to update M3u (or no changes to apply)");
         //    }
         //    catch (Exception ex)
         //    {

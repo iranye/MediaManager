@@ -6,24 +6,30 @@ namespace MediaManager.API.Services;
 
 public interface IMediaManagerRepository
 {
+    // Volume
     Task<IEnumerable<Volume>> GetVolumesAsync();
-
-    Task<IEnumerable<M3uFile>?> GetM3usAsync(bool includeFileEntries = false);
 
     Task<Volume?> GetVolumeAsync(string moniker, bool includeM3us = false);
 
     Task<bool> VolumeExistsAsync(string moniker);
 
-    Task<bool> M3uExistsAsync(string title);
+    void AddVolume(Volume volume);
+
+    // M3u
+    Task<IEnumerable<M3uFile>?> GetM3usAsync(bool includeFileEntries = false);
 
     Task<IEnumerable<M3uFile>?> GetM3usByVolumeAsync(string moniker, bool includeFileEntries = false);
 
     Task<M3uFile?> GetM3uByIdAsync(int m3uId);
 
-    void AddVolume(Volume volume);
+    Task<bool> M3uExistsAsync(string title);
 
     Task AddM3uToVolumeAsync(string moniker, M3uFile m3uFile);
 
+    // FileEntry
+    Task<IEnumerable<FileEntry>?> GetFileEntriesAsync();
+
+    // Generic
     void Add<T>(T entity) where T : class;
 
     public bool HasChanges();
@@ -131,5 +137,11 @@ public class MediaManagerRepository : IMediaManagerRepository
     public async Task<bool> SaveChangesAsync()
     {
         return (await context.SaveChangesAsync() >= 0);
+    }
+
+    public async Task<IEnumerable<FileEntry>?> GetFileEntriesAsync()
+    {
+        IQueryable<FileEntry> query = context.FileEntries.Include(f => f.M3uFiles);        
+        return await query.ToArrayAsync();
     }
 }

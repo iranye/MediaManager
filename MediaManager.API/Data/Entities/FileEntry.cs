@@ -18,9 +18,7 @@ public class FileEntry
     [MaxLength(100)]
     public string Name { get; set; }
 
-    [ForeignKey("M3uId")]
-    public M3uFile? M3uFile { get; set; }
-    public int M3uId { get; set; }
+    public ICollection<M3uFile> M3uFiles { get; set; } = new List<M3uFile>();
 
     public override string ToString()
     {
