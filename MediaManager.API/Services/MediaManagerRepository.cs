@@ -29,8 +29,12 @@ public interface IMediaManagerRepository
     // FileEntry
     Task<IEnumerable<FileEntry>?> GetFileEntriesAsync();
 
+    Task<IEnumerable<FileEntry>?> GetFileEntriesByListAsync(IEnumerable<string> fileNames);
+
     // Generic
     void Add<T>(T entity) where T : class;
+
+    void Delete<T>(T entity) where T : class;
 
     public bool HasChanges();
 
@@ -141,7 +145,24 @@ public class MediaManagerRepository : IMediaManagerRepository
 
     public async Task<IEnumerable<FileEntry>?> GetFileEntriesAsync()
     {
-        IQueryable<FileEntry> query = context.FileEntries.Include(f => f.M3uFiles);        
+        IQueryable<FileEntry> query = context.FileEntries.Include(f => f.M3uFiles);
         return await query.ToArrayAsync();
+    }
+
+    //public async Task<IEnumerable<FileEntry>?> GetFileEntriesByListAsync(Dictionary<int, string> fileKeyValuePairs)
+    //{
+    //    IQueryable<FileEntry> query = context.FileEntries.Where(f => fileKeyValuePairs.Keys.Any(k => k == f.Id) || fileKeyValuePairs.Values.Any(v => v == f.Name));
+    //    return await query.ToArrayAsync();
+    //}
+
+    public async Task<IEnumerable<FileEntry>?> GetFileEntriesByListAsync(IEnumerable<string> fileNames)
+    {
+        IQueryable<FileEntry> query = context.FileEntries.Where(f => fileNames.Any(fn => fn == f.Name));
+        return await query.ToArrayAsync();
+    }
+
+    public void Delete<T>(T entity) where T : class
+    {
+        context.Remove(entity);
     }
 }

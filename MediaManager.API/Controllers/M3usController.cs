@@ -129,7 +129,10 @@ namespace MediaManager.API.Controllers
 
                 var fileEntriesToRemove = new List<FileEntryDto>();
                 var fileEntriesToAdd = new List<FileEntry>();
-                var fileEntriesFromStore = await repository.GetFileEntriesAsync(); // TODO: only get files based on supplied list
+
+                // TODO: Add support for lookup by FileEntry.Id(s) (add runtime check ensure uniqe FileEntry.Ids in FilesInM3U col)
+                // TODO: De-dupe list of FileEntries in parameter
+                var fileEntriesFromStore = await repository.GetFileEntriesByListAsync(m3uFile.FilesInM3U.Select(f => f.Name));
                 if (fileEntriesFromStore != null)
                 {
                     foreach (var fileEntry in m3uFile.FilesInM3U)
@@ -183,7 +186,7 @@ namespace MediaManager.API.Controllers
                 if (m3uFileFromStore == null)
                 {
                     logger.LogInformation("[M3usController] M3u with Id {m3uId} not found.", m3uId);
-                    return NotFound();
+                    return NotFound($"[M3usController] M3u with Id {m3uId} not found.");
                 }
                 var m3uIsAttached = moniker.Trim().ToLower() != "all";
                 if (m3uIsAttached)
@@ -277,31 +280,45 @@ namespace MediaManager.API.Controllers
         //    }
         //}
 
-        //[HttpDelete("{m3uId}")]
-        //public async Task<ActionResult> DeleteM3uFile(string moniker, int m3uId)
-        //{
-        //    try
-        //    {
-        //        var volume = volumesDataStore.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
-        //        if (volume is null)
-        //        {
-        //            return NotFound();
-        //        }
+        [HttpDelete("{m3uId}")]
+        public async Task<ActionResult> DeleteM3uFile(string moniker, int m3uId)
+        {
+            try
+            {
+                var m3uFileFromStore = await repository.GetM3uByIdAsync(m3uId);
+                if (m3uFileFromStore == null)
+                {
+                    logger.LogInformation("[M3usController] M3u with Id {m3uId} not found.", m3uId);
+                    return NotFound($"[M3usController] M3u with Id {m3uId} not found.");
+                }
+                var m3uIsAttached = moniker.Trim().ToLower() != "all";
+                if (m3uIsAttached)
+                {
+                    var volumeExists = await repository.VolumeExistsAsync(moniker);
+                    if (!volumeExists)
+                    {
+                        logger.LogInformation("[M3usController] Volume '{moniker}' not found.", moniker);
+                        return NotFound($"Volume '{{moniker}}' not found.");
+                    }
+                    if (m3uFileFromStore.Volume?.Moniker != moniker)
+                    {
+                        logger.LogInformation("[M3usController] Volume '{moniker}' with M3ufile Id '{m3uId}' not found.", moniker, m3uId);
+                        return NotFound($"Volume '{moniker}' with M3u Id '{m3uId}' not found.");
+                    }
+                }
 
-        //        var m3uFileFromStore = volume.M3uFiles.FirstOrDefault(c => c.Id == m3uId);
-        //        if (m3uFileFromStore == null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        volume.M3uFiles.Remove(m3uFileFromStore);
-        //        return NoContent();
-        //    }                
-        //    catch (Exception ex)
-        //    {
-        //        logger.LogCritical("[M3usController] Exception in DELETE method Volume with moniker: '{moniker}', m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
-        //        return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
-        //    }
-        //}
+                repository.Delete(m3uFileFromStore);
+                if (await repository.SaveChangesAsync())
+                {
+                    return NoContent();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogCritical("[M3usController] Exception in DELETE method Volume with moniker: '{moniker}', m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
+            }
+            return BadRequest("Failed to delete M3u");
+        }
     }
 }
