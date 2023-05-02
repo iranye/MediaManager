@@ -34,7 +34,7 @@ BUSINESS RULES/BEHAVIOR END
 
 USER STORIES
 Give me a playlist of random FileEntries based on e.g., Tag (e.g., Rock)
-
+Remove one or more FileEntry(s) from an M3u (e.g., via M3usController PUT/PATCH or FileEntryController/{m3uId}/{fileEntryId} - DELETE)
 
 USER STORIES END
 

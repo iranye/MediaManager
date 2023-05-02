@@ -27,8 +27,6 @@ public interface IMediaManagerRepository
     Task AddM3uToVolumeAsync(string moniker, M3uFile m3uFile);
 
     // FileEntry
-    Task<IEnumerable<FileEntry>?> GetFileEntriesAsync();
-
     Task<IEnumerable<FileEntry>?> GetFileEntriesByListAsync(IEnumerable<string> fileNames);
 
     // Generic
@@ -142,18 +140,6 @@ public class MediaManagerRepository : IMediaManagerRepository
     {
         return (await context.SaveChangesAsync() >= 0);
     }
-
-    public async Task<IEnumerable<FileEntry>?> GetFileEntriesAsync()
-    {
-        IQueryable<FileEntry> query = context.FileEntries.Include(f => f.M3uFiles);
-        return await query.ToArrayAsync();
-    }
-
-    //public async Task<IEnumerable<FileEntry>?> GetFileEntriesByListAsync(Dictionary<int, string> fileKeyValuePairs)
-    //{
-    //    IQueryable<FileEntry> query = context.FileEntries.Where(f => fileKeyValuePairs.Keys.Any(k => k == f.Id) || fileKeyValuePairs.Values.Any(v => v == f.Name));
-    //    return await query.ToArrayAsync();
-    //}
 
     public async Task<IEnumerable<FileEntry>?> GetFileEntriesByListAsync(IEnumerable<string> fileNames)
     {
