@@ -221,64 +221,64 @@ namespace MediaManager.API.Controllers
             return BadRequest("Failed to update M3u (or no changes to apply)");
         }
 
-        //[HttpPatch("{m3uId}")]
-        //public async Task<ActionResult> PartiallyUpdateM3uFile(string moniker, int m3uId, JsonPatchDocument<M3uFileDtoForUpsert> patchDocument)
-        //{
-        //    try
-        //    {
-        //        var m3uFileFromStore = await repository.GetM3uByIdAsync(m3uId);
-        //        if (m3uFileFromStore == null)
-        //        {
-        //            logger.LogInformation("[M3usController] M3u with Id {m3uId} not found.", m3uId);
-        //            return NotFound();
-        //        }
-        //        var m3uIsAttached = moniker.Trim().ToLower() != "all";
-        //        if (m3uIsAttached)
-        //        {
-        //            var volumeExists = await repository.VolumeExistsAsync(moniker);
-        //            if (!volumeExists)
-        //            {
-        //                logger.LogInformation("[M3usController] Volume '{moniker}' not found.", moniker);
-        //                return NotFound($"Volume '{{moniker}}' not found.");
-        //            }
-        //            if (m3uFileFromStore.Volume?.Moniker != moniker)
-        //            {
-        //                logger.LogInformation("[M3usController] Volume '{moniker}' with M3ufile Id '{m3uId}' not found.", moniker, m3uId);
-        //                return NotFound($"Volume '{moniker}' with M3u Id '{m3uId}' not found.");
-        //            }
-        //        }
+        [HttpPatch("{m3uId}")]
+        public async Task<ActionResult> PartiallyUpdateM3uFile(string moniker, int m3uId, JsonPatchDocument<M3uFileDtoForUpsert> patchDocument)
+        {
+            try
+            {
+                var m3uFileFromStore = await repository.GetM3uByIdAsync(m3uId);
+                if (m3uFileFromStore == null)
+                {
+                    logger.LogInformation("[M3usController] M3u with Id {m3uId} not found.", m3uId);
+                    return NotFound();
+                }
+                var m3uIsAttached = moniker.Trim().ToLower() != "all";
+                if (m3uIsAttached)
+                {
+                    var volumeExists = await repository.VolumeExistsAsync(moniker);
+                    if (!volumeExists)
+                    {
+                        logger.LogInformation("[M3usController] Volume '{moniker}' not found.", moniker);
+                        return NotFound($"Volume '{{moniker}}' not found.");
+                    }
+                    if (m3uFileFromStore.Volume?.Moniker != moniker)
+                    {
+                        logger.LogInformation("[M3usController] Volume '{moniker}' with M3ufile Id '{m3uId}' not found.", moniker, m3uId);
+                        return NotFound($"Volume '{moniker}' with M3u Id '{m3uId}' not found.");
+                    }
+                }
 
-        //        var m3uFileToPatch = mapper.Map<M3uFileDtoForUpsert>(m3uFileFromStore);
-        //        patchDocument.ApplyTo(m3uFileToPatch, ModelState);
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return BadRequest(ModelState);
-        //        }
+                var m3uFileToPatch = mapper.Map<M3uFileDtoForUpsert>(m3uFileFromStore);
+                patchDocument.ApplyTo(m3uFileToPatch, ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
 
-        //        if (!TryValidateModel(m3uFileToPatch))
-        //        {
-        //            return BadRequest(ModelState);
-        //        }
+                if (!TryValidateModel(m3uFileToPatch))
+                {
+                    return BadRequest(ModelState);
+                }
 
-        //        mapper.Map(m3uFileToPatch, m3uFileFromStore);
+                mapper.Map(m3uFileToPatch, m3uFileFromStore);
 
-        //        if (repository.HasChanges())
-        //        {
-        //            m3uFileFromStore.LastModified = DateTime.Now;
-        //            if (await repository.SaveChangesAsync())
-        //            {
-        //                return NoContent();
-        //            }
-        //        }
+                if (repository.HasChanges())
+                {
+                    m3uFileFromStore.LastModified = DateTime.Now;
+                    if (await repository.SaveChangesAsync())
+                    {
+                        return NoContent();
+                    }
+                }
 
-        //        return BadRequest("Failed to update M3u (or no changes to apply)");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        logger.LogCritical("[M3usController] Exception in PATCH method Volume with moniker: '{moniker}', m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
-        //        return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
-        //    }
-        //}
+                return BadRequest("Failed to update M3u (or no changes to apply)");
+            }
+            catch (Exception ex)
+            {
+                logger.LogCritical("[M3usController] Exception in PATCH method Volume with moniker: '{moniker}', m3uId: {m3uId}, '{Message}'.", moniker, m3uId, ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
+            }
+        }
 
         [HttpDelete("{m3uId}")]
         public async Task<ActionResult> DeleteM3uFile(string moniker, int m3uId)

@@ -12,6 +12,6 @@ public class M3uProfile : Profile
                 .ForMember(c => c.VolumeMoniker, o => o.MapFrom(m => m.Volume == null ? "" : m.Volume.Moniker));
         CreateMap<M3uFile, M3uWithoutFileEntriesDto>()
                 .ForMember(c => c.VolumeMoniker, o => o.MapFrom(m => m.Volume == null ? "" : m.Volume.Moniker));
-        CreateMap<M3uFileDtoForUpsert, M3uFile>();
+        CreateMap<M3uFileDtoForUpsert, M3uFile>().ReverseMap();
     }
 }
