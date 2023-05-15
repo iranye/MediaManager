@@ -1,14 +1,16 @@
 using MediaManager.API.Data;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace MediaManager.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            IWebHostEnvironment env = builder.Environment;
             builder.Services.AddControllers(options =>
             {
                 options.ReturnHttpNotAcceptable = true;
@@ -18,21 +20,14 @@ namespace MediaManager.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
 
-            //if (_env.IsProduction())
-            //{
-            //    services.AddApplicationDbContext(HerokuConnectingString.Get());
-            //}
-            //else
-            //{
-            //    services.AddApplicationDbContext(Configuration.GetConnectionString("MediaManagerConnectionString"));
-            //}
             builder.Services.AddDbContext<MediaManagerContext>(dbContextOptions =>
-                dbContextOptions.UseNpgsql(builder.Configuration.GetConnectionString("MediaManagerConnectionString"))
+                dbContextOptions.UseNpgsql(ConnectionHelper.GetConnectionString(builder.Configuration))
             );
+
             var app = builder.Build();
 
-            // TODO: remove if not really needed
-            // AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            var scope = app.Services.CreateScope();
+            await DataHelper.ManageDataAsync(scope.ServiceProvider);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

@@ -68,7 +68,7 @@ public static class ConnectionHelper
 	private static string BuildConnectionString(string databaseUrl)
 	{
 		var databaseUri = new Uri(databaseUrl);
-		var userInfo = databaseUrl.UserInfo.Split(':');
+		var userInfo = databaseUri.UserInfo.Split(':');
 		var builder = new NpgsqlConnectionStringBuilder
 		{
 			Host=databaseUri.Host,
@@ -102,3 +102,18 @@ var scope = app.Services.CreateScope();
 await DataHelper.ManageDataAsync(scope.ServiceProvider);
 
 POSTGRESQL END
+
+if (env.IsProduction())
+{
+    services.AddApplicationDbContext(HerokuConnectingString.Get());
+}
+else
+{
+    builder.Services.AddDbContext<MediaManagerContext>(dbContextOptions =>
+        dbContextOptions.UseNpgsql(builder.Configuration.GetConnectionString("MediaManagerConnectionString"))
+    );
+}
+
+builder.Services.AddDbContext<MediaManagerContext>(dbContextOptions =>
+    dbContextOptions.UseNpgsql(builder.Configuration.GetConnectionString("MediaManagerConnectionString"))
+)
