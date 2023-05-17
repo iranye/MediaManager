@@ -26,6 +26,10 @@ public class MediaManagerContext : DbContext
                 new Volume("Mellow-01", "mellow-01")
                 {
                     Id = 2
+                },
+                new Volume("KGON-02", "kgon-02")
+                {
+                    Id = 3
                 }
             );
 

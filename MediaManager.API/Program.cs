@@ -1,7 +1,8 @@
 using MediaManager.API.Data;
+using MediaManager.API.Services;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration.UserSecrets;
+using Newtonsoft.Json;
 
 namespace MediaManager.API
 {
@@ -10,11 +11,11 @@ namespace MediaManager.API
         public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            IWebHostEnvironment env = builder.Environment;
             builder.Services.AddControllers(options =>
             {
                 options.ReturnHttpNotAcceptable = true;
-            }).AddXmlDataContractSerializerFormatters();
+            }).AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
+              .AddXmlDataContractSerializerFormatters();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -24,8 +25,10 @@ namespace MediaManager.API
                 dbContextOptions.UseNpgsql(ConnectionHelper.GetConnectionString(builder.Configuration))
             );
 
-            var app = builder.Build();
+            builder.Services.AddScoped<IMediaManagerRepository, MediaManagerRepository>();
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+            var app = builder.Build();
             var scope = app.Services.CreateScope();
             await DataHelper.ManageDataAsync(scope.ServiceProvider);
 
