@@ -1,5 +1,7 @@
-﻿using MediaManager.API.Data;
+﻿using AutoMapper;
+using MediaManager.API.Data;
 using MediaManager.API.Model;
+using MediaManager.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MediaManager.API.Controllers
@@ -13,16 +15,28 @@ namespace MediaManager.API.Controllers
     [Route("api/volumes")]
     public class VolumesController : ControllerBase
     {
-        public ActionResult<IEnumerable<VolumeDto>> GetVolumes(bool includeM3us = false)
+        private readonly ILogger<VolumesController> logger;
+        private readonly IMediaManagerRepository repository;
+        private readonly IMapper mapper;
+
+        public VolumesController(ILogger<VolumesController> logger, IMediaManagerRepository repository, IMapper mapper)
+        {
+            this.logger = logger;
+            this.repository = repository;
+            this.mapper = mapper;
+        }
+
+        public async Task<ActionResult<IEnumerable<VolumeWithoutM3usDto>>> GetVolumes()
         {
             try
             {
-                var results = VolumesDataStore.Current.Volumes;
-                return Ok(results);
+                var results = await repository.GetVolumesAsync();
+                return Ok(mapper.Map<IEnumerable<VolumeWithoutM3usDto>>(results));
             }
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                logger.LogCritical("[VolumesController] Exception in GET Volumes method '{Message}'.", ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
             }
         }
 

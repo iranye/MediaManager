@@ -1,7 +1,119 @@
+Update NotFound() and other "fail" statements to include a message (as it does in Camp API)
 
-async Controller Actions
+Nuke the DB and test "auto migrate" code from coder-foundry
 
-Logging (i.e., ex.Message) to file + LogController
+Come up with a way to display DateTimes better: DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")
+    "created": "2023-04-28T09:13:38.076952-04:00",
+    "lastModified": null,
 
-Implement Repository then query string logic: ?includeM3us=true
+Use Fluent Validation
+	
+VolumesController needs PUT,PATCH
 
+M3usController
+ - PUT need a way to detect if any changes and NOT update if no changes (currently always saves w/ updated LastModified DateTime)
+ - Should be able to associate/dis-associated M3u to Volume via PUT or PATCH
+
+
+Logging (i.e., ex.Message) to file + LogController (i.e., make logs available via API endpoint)
+
+For M3usController PUT, PATCH, make sure un-attached M3u can become attached (and vice-versa)
+
+BUSINESS RULES/BEHAVIOR START:
+An M3u can belong to 1 Volume, or NO Volume:
+Id	Title	TotalMegaBytes	Created	VolumeId
+7	Rammstein.m3u	42	2023-04-28 09:09:49.3707026	3
+8	Gaga.m3u	42	2023-04-28 09:13:38.0769520	NULL
+
+A FileEntry can belong multiple M3us
+
+PUT M3usController with empty FileEntries will DELETE rows from the DB (if they're associated by m3uId)
+PUT M3usController with Volume="all" will update M3u but keep Volume association (if any)
+
+BUSINESS RULES/BEHAVIOR END
+
+USER STORIES
+Give me a playlist of random FileEntries based on e.g., Tag (e.g., Rock)
+Remove one or more FileEntry(s) from an M3u (e.g., via M3usController PUT/PATCH or FileEntryController/{m3uId}/{fileEntryId} - DELETE)
+
+USER STORIES END
+
+POSTGRESQL
+
+Get dev psql conn str from intelly
+"NewStuff\MediaManager\appsettings.Development.json"
+
+            if (_env.IsProduction()) {
+                services.AddApplicationDbContext(HerokuConnectingString.Get());
+            }
+            else {
+                services.AddApplicationDbContext(Configuration.GetConnectionString("DefaultConnection"));
+            }
+
+mediamanager-production.up.railway.app
+
+SELECT * FROM "Volumes";
+SELECT * FROM "M3uFile";
+SELECT * FROM "FileEntry";
+
+public static class ConnectionHelper
+{
+	public static string GetConnectionString(IConfiguration configuration)
+	{
+		var connectionString = configuration.GetConnectionString("DefaultConnection");
+		var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+		return string.IsNullOrEmpty(databaseUrl) ? connectionString : BuildConnectionString(databaseUrl);
+	}
+
+	private static string BuildConnectionString(string databaseUrl)
+	{
+		var databaseUri = new Uri(databaseUrl);
+		var userInfo = databaseUri.UserInfo.Split(':');
+		var builder = new NpgsqlConnectionStringBuilder
+		{
+			Host=databaseUri.Host,
+			Port=databaseUri.Port,
+			Username=userInfo[0],
+			Password=userInfo[1],
+			Database=databaseUri.LocalPath.TrimStart('/'),
+			SslMode=SslMode.Require,
+			TrustServerCertificate=true
+		};
+		return builder.ToString();
+	}
+}
+
+
+public static class DataHelper
+{
+	public static async Task ManageDataAsync(IServiceProvider svcProvider)
+	{
+		var dbContextSvc = svcProvider.GetRequiredService<ApplicationDbContext>();
+
+		// Migration: the programmatic equivalent to Update-Database
+		await dbContextSvc.Database.MigrateAsync();
+	}
+}
+
+//program.cs
+
+var app = builder.Build();
+var scope = app.Services.CreateScope();
+await DataHelper.ManageDataAsync(scope.ServiceProvider);
+
+POSTGRESQL END
+
+if (env.IsProduction())
+{
+    services.AddApplicationDbContext(HerokuConnectingString.Get());
+}
+else
+{
+    builder.Services.AddDbContext<MediaManagerContext>(dbContextOptions =>
+        dbContextOptions.UseNpgsql(builder.Configuration.GetConnectionString("MediaManagerConnectionString"))
+    );
+}
+
+builder.Services.AddDbContext<MediaManagerContext>(dbContextOptions =>
+    dbContextOptions.UseNpgsql(builder.Configuration.GetConnectionString("MediaManagerConnectionString"))
+)
