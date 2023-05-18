@@ -22,9 +22,9 @@ namespace MediaManager.API.Controllers
 
         public VolumesController(ILogger<VolumesController> logger, IMediaManagerRepository repository, IMapper mapper)
         {
-            this.logger = logger;
-            this.repository = repository;
-            this.mapper = mapper;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public async Task<ActionResult<IEnumerable<VolumeWithoutM3usDto>>> GetVolumes()
@@ -42,7 +42,7 @@ namespace MediaManager.API.Controllers
         }
 
         [HttpGet("{moniker}", Name = "GetVolume")]
-        public async Task<IActionResult> GetVolume(string moniker, bool includeM3us = false)
+        public async Task<IActionResult> GetVolume(string moniker, bool includeM3us=false)
         {
             try
             {
