@@ -15,9 +15,9 @@
 
         public string Moniker { get; set; } = String.Empty;
 
-        public DateTime Created { get; set; } = DateTime.MinValue;
+        public DateTimeOffset Created { get; set; } = DateTime.MinValue;
 
-        public DateTime LastModified { get; set; } = DateTime.MinValue;
+        public DateTimeOffset LastModified { get; set; } = DateTime.MinValue;
 
         public ICollection<M3uFileDto> M3uFiles { get; set; } = new List<M3uFileDto>();
 

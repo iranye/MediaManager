@@ -1,6 +1,6 @@
 Update NotFound() and other "fail" statements to include a message (as it does in Camp API)
 
-Nuke the DB and test "auto migrate" code from coder-foundry
+For Psql w DateTimeOffset, using Created=new DateTimeOffset(DateTime.UtcNow).  Might need to handle local timezones.
 
 Come up with a way to display DateTimes better: DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")
     "created": "2023-04-28T09:13:38.076952-04:00",

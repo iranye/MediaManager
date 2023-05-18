@@ -9,6 +9,11 @@
     {
         public int Id { get; set; }
 
-        public string Title { get; set; } = String.Empty;
+        public string Name { get; set; } = String.Empty;
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
