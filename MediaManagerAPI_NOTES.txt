@@ -1,4 +1,6 @@
-Update NotFound() and other "fail" statements to include a message (as it does in Camp API)
+TODO:
+	Update NotFound() and other "fail" statements to include a message (as it does in Camp API)
+	Use: bool includeFileEntries = false param on Get M3u (by Id, etc.)
 
 For Psql w DateTimeOffset, using Created=new DateTimeOffset(DateTime.UtcNow).  Might need to handle local timezones.
 
@@ -37,6 +39,40 @@ Give me a playlist of random FileEntries based on e.g., Tag (e.g., Rock)
 Remove one or more FileEntry(s) from an M3u (e.g., via M3usController PUT/PATCH or FileEntryController/{m3uId}/{fileEntryId} - DELETE)
 
 USER STORIES END
+
+
+REFACTOR
+private async Task<M3uFileDtoForUpsert> MassageM3uDto(M3uFileDtoForUpsert m3uFile)
+{
+    var fileEntriesToRemove = new List<FileEntryDto>();
+    var fileEntriesToAdd = new List<FileEntry>();
+
+    // TODO: Add support for lookup by FileEntry.Id(s) (add runtime check ensure uniqe FileEntry.Ids in FilesInM3U col)
+    // TODO: De-dupe list of FileEntries in parameter
+    var fileEntriesFromStore = await repository.GetFileEntriesByListAsync(m3uFile.FilesInM3U.Select(f => f.Name));
+    if (fileEntriesFromStore != null)
+    {
+        foreach (var fileEntry in m3uFile.FilesInM3U)
+        {
+            var fileEntryFromStore = fileEntriesFromStore.FirstOrDefault(f => f.Name == fileEntry.Name);
+            if (fileEntryFromStore != null)
+            {
+                fileEntriesToRemove.Add(fileEntry);
+                fileEntriesToAdd.Add(fileEntryFromStore);
+            }
+        }
+    }
+    foreach (var fileEntryToRemove in fileEntriesToRemove)
+    {
+        m3uFile.FilesInM3U.Remove(fileEntryToRemove);
+    }
+    foreach (var fileEntryToAdd in fileEntriesToAdd)
+    {
+        m3uFile.FilesInM3U.Add(mapper.Map<FileEntryDto>(fileEntryToAdd));
+    }
+    return m3uFile;
+}
+REFACTOR
 
 POSTGRESQL
 

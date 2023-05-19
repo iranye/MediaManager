@@ -201,10 +201,39 @@ namespace MediaManager.API.Controllers
                         return NotFound($"Volume '{moniker}' with M3u Id '{m3uId}' not found.");
                     }
                 }
+
+                var fileEntriesToRemove = new List<FileEntryDto>();
+                var fileEntriesToAdd = new List<FileEntry>();
+
+                var fileEntriesFromStore = await repository.GetFileEntriesByListAsync(m3uFile.FilesInM3U.Select(f => f.Name));
+                if (fileEntriesFromStore != null)
+                {
+                    foreach (var fileEntry in m3uFile.FilesInM3U)
+                    {
+                        var fileEntryFromStore = fileEntriesFromStore.FirstOrDefault(f => f.Name == fileEntry.Name);
+                        if (fileEntryFromStore != null)
+                        {
+                            fileEntriesToRemove.Add(fileEntry);
+                            fileEntriesToAdd.Add(fileEntryFromStore);
+                        }
+                    }
+                }
+                foreach (var fileEntryToRemove in fileEntriesToRemove)
+                {
+                    m3uFile.FilesInM3U.Remove(fileEntryToRemove);
+                }
+
                 mapper.Map(m3uFile, m3uFileFromStore);
+                foreach (var fileEntryToAdd in fileEntriesToAdd)
+                {
+                    if (!m3uFileFromStore.FilesInM3U.Any(f => f.Id == fileEntryToAdd.Id))
+                    {
+                        m3uFileFromStore.FilesInM3U.Add(fileEntryToAdd);
+                    }
+                }
                 if (repository.HasChanges())
                 {
-                    m3uFileFromStore.LastModified = DateTime.Now;
+                    m3uFileFromStore.LastModified = new DateTimeOffset(DateTime.UtcNow);
                     if (await repository.SaveChangesAsync())
                     {
                         return NoContent();

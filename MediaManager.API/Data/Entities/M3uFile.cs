@@ -9,7 +9,7 @@ public sealed class M3uFile
     public M3uFile(string title)
     {
         Title = title;
-        Created = DateTime.Now;
+        Created = new DateTimeOffset(DateTime.UtcNow);
     }
 
     [Key]
