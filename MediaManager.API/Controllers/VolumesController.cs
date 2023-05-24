@@ -3,6 +3,8 @@ using MediaManager.API.Data.Entities;
 using MediaManager.API.Helpers;
 using MediaManager.API.Model;
 using MediaManager.API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MediaManager.API.Controllers
@@ -13,6 +15,7 @@ namespace MediaManager.API.Controllers
     // </copyright>
     // --------------------------------------------------------------------------------------------------------------------
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/volumes")]
     public class VolumesController : ControllerBase
     {
