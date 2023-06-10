@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{459037CF-604D-479E-B2F0-1A68B8387D9D}"
 	ProjectSection(SolutionItems) = preProject
 		MediaManagerAPI_NOTES.txt = MediaManagerAPI_NOTES.txt
+		MediaManagerAPI_QUERIES.sql = MediaManagerAPI_QUERIES.sql
 		railway.json = railway.json
 	EndProjectSection
 EndProject
