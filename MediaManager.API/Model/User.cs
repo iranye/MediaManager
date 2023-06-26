@@ -1,14 +1,16 @@
 ﻿namespace MediaManager.API.Model
 {
-    public class RegisterUser
+    public class User
     {
-        public string? Email { get; set; }
-        public string? Password { get; set; }
-    }
+        public User(string id, string email, string userName)
+        {
+            Id = id;
+            Email = email;
+            UserName = userName;
+        }
 
-    public class LoginUser
-    {
-        public string? Email { get; set; }
-        public string? Password { get; set; }
+        public String Id { get; set; }
+        public string Email { get; set; }
+        public string UserName { get; set; }
     }
 }
