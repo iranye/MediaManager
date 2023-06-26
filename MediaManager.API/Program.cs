@@ -1,5 +1,7 @@
 using MediaManager.API.Data;
+using MediaManager.API.Data.Entities;
 using MediaManager.API.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -27,6 +29,19 @@ namespace MediaManager.API
                 dbContextOptions.UseNpgsql(ConnectionHelper.GetConnectionString(builder.Configuration))
             );
 
+            //builder.Services.AddIdentity<IdentityUser, IdentityRole>(cfg =>
+            //{
+            //    cfg.User.RequireUniqueEmail = true;
+            //    cfg.Password.RequireDigit = true;
+            //    cfg.Password.RequireLowercase = true;
+            //    cfg.Password.RequireUppercase = true;
+            //    cfg.Password.RequireNonAlphanumeric = false;
+            //    cfg.Password.RequiredLength = 6;
+            //})
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<MediaManagerContext>();
+            builder.Services.AddScoped<AuthenticationService>();
+
             builder.Services.AddScoped<IMediaManagerRepository, MediaManagerRepository>();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -48,6 +63,7 @@ namespace MediaManager.API
             var app = builder.Build();
             var scope = app.Services.CreateScope();
             await DataHelper.ManageDataAsync(scope.ServiceProvider);
+            // await MediaManagerSeeder.Initialize(scope.ServiceProvider);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -62,10 +78,7 @@ namespace MediaManager.API
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.MapControllers();
 
             app.Run();
         }

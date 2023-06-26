@@ -1,9 +1,11 @@
 ﻿using MediaManager.API.Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace MediaManager.API.Data;
 
-public class MediaManagerContext : DbContext
+public class MediaManagerContext : IdentityDbContext
 {
     public MediaManagerContext(DbContextOptions<MediaManagerContext> options)
         : base(options)
@@ -15,8 +17,22 @@ public class MediaManagerContext : DbContext
 
     public DbSet<FileEntry> FileEntries => Set<FileEntry>();
 
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //    => optionsBuilder.UseSnakeCaseNamingConvention();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        // modelBuilder.HasDefaultSchema("public");
+
+        ////Rename Identity tables to lowercase
+        //foreach (var entity in modelBuilder.Model.GetEntityTypes())
+        //{
+        //    var currentTableName = modelBuilder.Entity(entity.Name).Metadata.GetDefaultTableName();
+        //    modelBuilder.Entity(entity.Name).ToTable(currentTableName?.ToLower());
+        //}
+
         modelBuilder.Entity<Volume>()
             .HasData(
                 new Volume("KGON-01", "kgon-01")
