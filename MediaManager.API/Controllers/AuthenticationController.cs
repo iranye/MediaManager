@@ -1,4 +1,5 @@
-﻿using MediaManager.API.Services;
+﻿using MediaManager.API.Model;
+using MediaManager.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -22,18 +23,17 @@ namespace MediaManager.API.Controllers
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        [HttpPost]
-        [ActionName("register")]
+        [HttpPost("register")]
         public async Task<IActionResult> Register(AuthenticationRequestBody user)
         {
             try
             {
                 var response = await authenticationService.RegisterNewUser(user);
-                if (response)
+                if (!String.IsNullOrEmpty(response))
                 {
-                    return Ok($"User {user.Email} is registered successfully");
+                    return BadRequest(response);
                 }
-                return BadRequest(response);
+                return Ok($"User {user.Email} is registered successfully");
             }
             catch (Exception ex)
             {
@@ -52,11 +52,6 @@ namespace MediaManager.API.Controllers
                     var loggedInUser = await authenticationService.Authenticate(authRequest);
                     if (loggedInUser is null)
                     {
-                        var responseRegister = await authenticationService.RegisterNewUser(authRequest);
-                        if (responseRegister)
-                        {
-                            return Ok($"User {authRequest.Email} is registered successfully");
-                        }
                         return Unauthorized();
                     }
 
@@ -75,7 +70,7 @@ namespace MediaManager.API.Controllers
                         configuration["Authentication:Audience"],
                         claimsForToken,
                         DateTime.UtcNow,
-                        DateTime.UtcNow.AddDays(1),
+                        DateTime.UtcNow.AddHours(1),
                         signingCredentials
                         );
                     var token = new JwtSecurityTokenHandler()

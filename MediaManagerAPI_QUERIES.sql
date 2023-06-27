@@ -5,6 +5,7 @@ SELECT * FROM "M3uFiles";
 SELECT * FROM "M3uFileEntry";
 SELECT * FROM "FileEntries";
 SELECT * FROM "AspNetUsers";
+SELECT * FROM "AspNetRoles";
 
 
 SELECT * FROM information_schema.columns WHERE table_schema = 'public'

@@ -29,16 +29,15 @@ namespace MediaManager.API
                 dbContextOptions.UseNpgsql(ConnectionHelper.GetConnectionString(builder.Configuration))
             );
 
-            //builder.Services.AddIdentity<IdentityUser, IdentityRole>(cfg =>
-            //{
-            //    cfg.User.RequireUniqueEmail = true;
-            //    cfg.Password.RequireDigit = true;
-            //    cfg.Password.RequireLowercase = true;
-            //    cfg.Password.RequireUppercase = true;
-            //    cfg.Password.RequireNonAlphanumeric = false;
-            //    cfg.Password.RequiredLength = 6;
-            //})
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(cfg =>
+            {
+                cfg.User.RequireUniqueEmail = true;
+                cfg.Password.RequireDigit = true;
+                cfg.Password.RequireLowercase = true;
+                cfg.Password.RequireUppercase = true;
+                cfg.Password.RequireNonAlphanumeric = false;
+                cfg.Password.RequiredLength = 6;
+            })
                 .AddEntityFrameworkStores<MediaManagerContext>();
             builder.Services.AddScoped<AuthenticationService>();
 
@@ -63,7 +62,7 @@ namespace MediaManager.API
             var app = builder.Build();
             var scope = app.Services.CreateScope();
             await DataHelper.ManageDataAsync(scope.ServiceProvider);
-            // await MediaManagerSeeder.Initialize(scope.ServiceProvider);
+            await DataHelper.Initialize(scope.ServiceProvider);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

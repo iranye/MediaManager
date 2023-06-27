@@ -17,21 +17,9 @@ public class MediaManagerContext : IdentityDbContext
 
     public DbSet<FileEntry> FileEntries => Set<FileEntry>();
 
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //    => optionsBuilder.UseSnakeCaseNamingConvention();
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        // modelBuilder.HasDefaultSchema("public");
-
-        ////Rename Identity tables to lowercase
-        //foreach (var entity in modelBuilder.Model.GetEntityTypes())
-        //{
-        //    var currentTableName = modelBuilder.Entity(entity.Name).Metadata.GetDefaultTableName();
-        //    modelBuilder.Entity(entity.Name).ToTable(currentTableName?.ToLower());
-        //}
 
         modelBuilder.Entity<Volume>()
             .HasData(
