@@ -9,7 +9,7 @@ namespace MediaManager.API.Data.Entities
         {
             Title = title;
             Moniker = moniker;
-            Created = DateTime.Now;
+            Created = new DateTimeOffset(DateTime.UtcNow);
         }
 
         [Key]

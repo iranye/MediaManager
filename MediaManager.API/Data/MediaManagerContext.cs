@@ -1,9 +1,11 @@
 ﻿using MediaManager.API.Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace MediaManager.API.Data;
 
-public class MediaManagerContext : DbContext
+public class MediaManagerContext : IdentityDbContext
 {
     public MediaManagerContext(DbContextOptions<MediaManagerContext> options)
         : base(options)
@@ -17,6 +19,8 @@ public class MediaManagerContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Volume>()
             .HasData(
                 new Volume("KGON-01", "kgon-01")

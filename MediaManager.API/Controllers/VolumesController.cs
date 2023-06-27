@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
-using MediaManager.API.Data;
+using MediaManager.API.Data.Entities;
+using MediaManager.API.Helpers;
 using MediaManager.API.Model;
 using MediaManager.API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MediaManager.API.Controllers
@@ -12,6 +15,7 @@ namespace MediaManager.API.Controllers
     // </copyright>
     // --------------------------------------------------------------------------------------------------------------------
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/volumes")]
     public class VolumesController : ControllerBase
     {
@@ -21,9 +25,9 @@ namespace MediaManager.API.Controllers
 
         public VolumesController(ILogger<VolumesController> logger, IMediaManagerRepository repository, IMapper mapper)
         {
-            this.logger = logger;
-            this.repository = repository;
-            this.mapper = mapper;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public async Task<ActionResult<IEnumerable<VolumeWithoutM3usDto>>> GetVolumes()
@@ -40,21 +44,66 @@ namespace MediaManager.API.Controllers
             }
         }
 
-        [HttpGet("{moniker}")]
-        public ActionResult<VolumeDto> GetVolume(string moniker)
+        [HttpGet("{moniker}", Name = "GetVolume")]
+        public async Task<IActionResult> GetVolume(string moniker, bool includeM3us=false)
         {
             try
             {
-                var result = VolumesDataStore.Current.Volumes.FirstOrDefault(v => v.Moniker?.ToLower() == moniker.ToLower());
+                var result = await repository.GetVolumeAsync(moniker, includeM3us);
                 if (result is null)
                 {
+                    logger.LogInformation("[VolumesController] Volume with moniker {moniker} not found.", moniker);
                     return NotFound();
                 }
-                return Ok(result);
+                if (includeM3us)
+                {
+                    return Ok(mapper.Map<VolumeDto>(result));
+                }
+                return Ok(mapper.Map<VolumeWithoutM3usDto>(result));
             }
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                logger.LogCritical("[VolumesController] Exception in GET method Volume with moniker: {moniker} '{Message}'.", moniker, ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<VolumeDto>> CreateVolume(VolumeForUpsertDto volume)
+        {
+            try
+            {
+                var moniker = volume.Moniker?.Trim().ToLower();
+                if (String.IsNullOrWhiteSpace(moniker))
+                {
+                    moniker = volume.Title.GenerateMoniker();
+                    volume.Moniker = moniker;
+                }
+
+                var volumeExists = await repository.VolumeExistsAsync(moniker);
+                if (volumeExists || moniker == "all")
+                {
+                    return BadRequest($"Volume with Moniker: '{moniker}' already in use");
+                }
+
+                var volumeModel = mapper.Map<Volume>(volume);
+
+                repository.AddVolume(volumeModel);
+                await repository.SaveChangesAsync();
+
+                var newVolume = mapper.Map<VolumeDto>(volumeModel);
+
+                return CreatedAtRoute("GetVolume",
+                     new
+                     {
+                         moniker = moniker,
+                     },
+                     newVolume);
+            }
+            catch (Exception ex)
+            {
+                logger.LogCritical("[VolumesController] Exception in POST method: '{Message}'.", ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Failure handling your request");
             }
         }
     }
