@@ -1,6 +1,13 @@
 TODO:
 	Update NotFound() and other "fail" statements to include a message (as it does in Camp API)
 	Use: bool includeFileEntries = false param on Get M3u (by Id, etc.)
+    After deploying to Railway with "Register if Login Fail" code, get registered and then re-deploy without.
+    For users:
+        - Need role(s) in DB
+        - Test return good message for when password isn't strong enough
+        - Include ability to register via API (e.g., turn on Railway's environment variable temporarily)
+        - Include UserController (for Role=Admin) to list all users
+        - Include phone number
 
 For Psql w DateTimeOffset, using Created=new DateTimeOffset(DateTime.UtcNow).  Might need to handle local timezones.
 
