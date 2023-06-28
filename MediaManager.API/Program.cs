@@ -1,9 +1,11 @@
 using MediaManager.API.Data;
 using MediaManager.API.Data.Entities;
+using MediaManager.API.Helpers;
 using MediaManager.API.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System.Text;
@@ -52,10 +54,10 @@ namespace MediaManager.API
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = builder.Configuration["Authentication:Issuer"],
-                        ValidAudience = builder.Configuration["Authentication:Audience"],
+                        ValidIssuer = GetOptions.GetOption(builder.Configuration, "ISSUER", "Authentication"),
+                        ValidAudience = GetOptions.GetOption(builder.Configuration, "AUDIENCE", "Authentication"),
                         IssuerSigningKey = new SymmetricSecurityKey(
-                            Encoding.ASCII.GetBytes(builder.Configuration["Authentication:SecretForKey"]))
+                            Encoding.ASCII.GetBytes(GetOptions.GetOption(builder.Configuration, "SECRETFORKEY", "Authentication")))
                     };
                 });
 

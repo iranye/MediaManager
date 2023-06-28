@@ -1,4 +1,5 @@
-﻿using MediaManager.API.Model;
+﻿using MediaManager.API.Helpers;
+using MediaManager.API.Model;
 using MediaManager.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -55,7 +56,7 @@ namespace MediaManager.API.Controllers
                         return Unauthorized();
                     }
 
-                    var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(GetOption("SECRETFORKEY", "Authentication")));
+                    var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(GetOptions.GetOption(configuration, "SECRETFORKEY", "Authentication")));
 
                     var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -65,8 +66,8 @@ namespace MediaManager.API.Controllers
                     claimsForToken.Add(new Claim("email", loggedInUser.Email));
 
                     var jwtSecurityToken = new JwtSecurityToken(
-                        GetOption("ISSUER", "Authentication"),
-                        GetOption("AUDIENCE", "Authentication"),
+                        GetOptions.GetOption(configuration, "ISSUER", "Authentication"),
+                        GetOptions.GetOption(configuration, "AUDIENCE", "Authentication"),
                         claimsForToken,
                         DateTime.UtcNow,
                         DateTime.UtcNow.AddHours(1),
@@ -82,17 +83,6 @@ namespace MediaManager.API.Controllers
                 logger.LogError($"Authentication Failed: {ex}");
             }
             return Unauthorized();
-        }
-
-        private string GetOption(string setting, string? section = null)
-        {
-            var option = Environment.GetEnvironmentVariable($"{setting}");
-            if(String.IsNullOrWhiteSpace(option))
-            {
-                option = String.IsNullOrWhiteSpace(section) ? configuration[setting] : configuration[$"{section}:{setting}"];
-            }
-
-            return option;
         }
     }
 }
