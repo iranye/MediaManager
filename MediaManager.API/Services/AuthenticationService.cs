@@ -1,9 +1,6 @@
 ﻿using MediaManager.API.Controllers;
 using MediaManager.API.Model;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using System.Data;
 
 namespace MediaManager.API.Services
 {
