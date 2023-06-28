@@ -55,7 +55,7 @@ namespace MediaManager.API.Controllers
                         return Unauthorized();
                     }
 
-                    var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(GetOption("SecretForKey", "Authentication")));
+                    var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(GetOption("SECRETFORKEY", "Authentication")));
 
                     var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -65,8 +65,8 @@ namespace MediaManager.API.Controllers
                     claimsForToken.Add(new Claim("email", loggedInUser.Email));
 
                     var jwtSecurityToken = new JwtSecurityToken(
-                        GetOption("Issuer", "Authentication"),
-                        GetOption("Audience", "Authentication"),
+                        GetOption("ISSUER", "Authentication"),
+                        GetOption("AUDIENCE", "Authentication"),
                         claimsForToken,
                         DateTime.UtcNow,
                         DateTime.UtcNow.AddHours(1),
